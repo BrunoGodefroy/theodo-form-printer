@@ -57,12 +57,12 @@ function* logoutSaga(action) {
 
 function* fetchLatestForms(action) {
   try {
-    const response = yield call(gapi.client.script.scripts.run({
+    const response = yield call(gapi.client.script.scripts.run, {
       'scriptId': SCRIPT_ID,
       'resource': {
         'function': 'getLastResponsesUrl'
       }
-    }));
+    });
     if (response.result.error) {
       console.error(response.result.error);
       yield put(fetchFormsFailure());
