@@ -10,9 +10,11 @@ import {
   loginFailure,
   logoutSuccess,
   logoutFailure,
+  fetchFormsSuccess,
+  fetchFormsFailure,
 } from './actions';
 
-import gapi, { CLIENT_ID, DISCOVERY_DOCS, SCOPES } from '../services/google';
+import gapi, { CLIENT_ID, DISCOVERY_DOCS, SCOPES, SCRIPT_ID } from '../services/google';
 
 function* initGoogleClientSaga(action) {
   try {
@@ -46,7 +48,7 @@ function* loginSaga(action) {
 function* logoutSaga(action) {
   try {
     yield call(gapi.logoutAsync);
-    yield put(logoutSuccess())
+    yield put(logoutSuccess());
   } catch(e) {
     console.error(e);
     yield put(logoutFailure());
@@ -54,7 +56,22 @@ function* logoutSaga(action) {
 }
 
 function* fetchLatestForms(action) {
-
+  try {
+    const response = yield call(gapi.client.script.scripts.run({
+      'scriptId': SCRIPT_ID,
+      'resource': {
+        'function': 'getLastResponsesUrl'
+      }
+    }));
+    if (response.result.error) {
+      console.error(response.result.error);
+      yield put(fetchFormsFailure());
+    }
+    yield put(fetchFormsSuccess(response.result.response.result));
+  } catch(e) {
+    console.error(e);
+    yield put(fetchFormsFailure());
+  }
 }
 
 function* rootSaga() {
