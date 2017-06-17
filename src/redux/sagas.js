@@ -53,10 +53,15 @@ function* logoutSaga(action) {
   }
 }
 
+function* fetchLatestForms(action) {
+
+}
+
 function* rootSaga() {
   yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga);
   yield takeEvery(types.LOGIN.REQUEST, loginSaga);
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga);
+  yield takeEvery(types.FETCH_FORMS.REQUEST, fetchLatestForms);
 
   yield call(delay, 100);
   yield put(googleClientInitRequest());

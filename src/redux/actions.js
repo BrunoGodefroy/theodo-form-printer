@@ -13,7 +13,12 @@ export const types = {
     REQUEST: 'LOGOUT_REQUEST',
     SUCCESS: 'LOGOUT_SUCCESS',
     FAILURE: 'LOGOUT_FAILURE',
-  }
+  },
+  FETCH_FORMS: {
+    REQUEST: 'FETCH_FORMS_REQUEST',
+    SUCCESS: 'FETCH_FORMS_SUCCESS',
+    FAILURE: 'FETCH_FORMS_FAILURE',
+  },
 };
 
 export const googleClientInitRequest = () => ({
@@ -51,4 +56,17 @@ export const logoutSuccess = () => ({
 
 export const logoutFailure = () => ({
   type: types.LOGOUT.FAILURE,
+});
+
+export const fetchFormsRequest = () => ({
+  type: types.FETCH_FORMS.REQUEST,
+});
+
+export const fetchFormsSuccess = (forms) => ({
+  type: types.FETCH_FORMS.SUCCESS,
+  forms,
+});
+
+export const fetchFormsFailure = () => ({
+  type: types.FETCH_FORMS.FAILURE,
 });
