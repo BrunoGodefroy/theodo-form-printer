@@ -6,11 +6,13 @@ import {
   googleClientInitRequest,
   googleClientInitSuccess,
   googleClientInitFailure,
+  loginSuccess,
+  loginFailure,
 } from './actions';
 
 import gapi, { CLIENT_ID, DISCOVERY_DOCS, SCOPES } from '../services/google';
 
-function* initGoogleClient(action) {
+function* initGoogleClientSaga(action) {
   try {
     yield call(gapi.loadAsync);
     yield call(
@@ -28,8 +30,20 @@ function* initGoogleClient(action) {
   }
 }
 
+function* loginSaga(action) {
+  try {
+    yield call(gapi.auth2.getAuthInstance().signIn);
+    yield put(loginSuccess());
+  }
+  catch(e) {
+    console.error(e);
+    yield put(loginFailure());
+  }
+}
+
 function* rootSaga() {
-  yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClient);
+  yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga);
+  yield takeEvery(types.LOGIN.REQUEST, loginSaga);
 
   yield call(delay, 100);
   yield put(googleClientInitRequest());

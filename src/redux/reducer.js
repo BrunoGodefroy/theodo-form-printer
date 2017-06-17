@@ -25,6 +25,23 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         error: true,
       };
+    case types.LOGIN.REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.LOGIN.SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: true
+      };
+    case types.LOGIN.FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
     default:
       return state;
   }
