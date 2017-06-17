@@ -22,7 +22,7 @@ function* initGoogleClientSaga(action) {
         scope: SCOPES
       }
     );
-    yield put(googleClientInitSuccess());
+    yield put(googleClientInitSuccess(gapi.auth2.getAuthInstance().isSignedIn.get()));
   }
   catch(e) {
     console.error(e);

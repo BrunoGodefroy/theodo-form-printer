@@ -15,8 +15,9 @@ export const googleClientInitRequest = () => ({
   type: types.GOOGLE_CLIENT_INIT.REQUEST,
 });
 
-export const googleClientInitSuccess = () => ({
+export const googleClientInitSuccess = (isLoggedIn) => ({
   type: types.GOOGLE_CLIENT_INIT.SUCCESS,
+  isLoggedIn,
 });
 
 export const googleClientInitFailure = () => ({
