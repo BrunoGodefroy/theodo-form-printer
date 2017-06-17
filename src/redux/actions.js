@@ -8,6 +8,11 @@ export const types = {
     REQUEST: 'LOGIN_REQUEST',
     SUCCESS: 'LOGIN_SUCCESS',
     FAILURE: 'LOGIN_FAILURE',
+  },
+  LOGOUT: {
+    REQUEST: 'LOGOUT_REQUEST',
+    SUCCESS: 'LOGOUT_SUCCESS',
+    FAILURE: 'LOGOUT_FAILURE',
   }
 };
 
@@ -34,4 +39,16 @@ export const loginSuccess = () => ({
 
 export const loginFailure = () => ({
   type: types.LOGIN.FAILURE,
+});
+
+export const logoutRequest = () => ({
+  type: types.LOGOUT.REQUEST,
+});
+
+export const logoutSuccess = () => ({
+  type: types.LOGOUT.SUCCESS,
+});
+
+export const logoutFailure = () => ({
+  type: types.LOGOUT.FAILURE,
 });

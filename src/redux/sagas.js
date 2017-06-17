@@ -8,6 +8,8 @@ import {
   googleClientInitFailure,
   loginSuccess,
   loginFailure,
+  logoutSuccess,
+  logoutFailure,
 } from './actions';
 
 import gapi, { CLIENT_ID, DISCOVERY_DOCS, SCOPES } from '../services/google';
@@ -41,9 +43,20 @@ function* loginSaga(action) {
   }
 }
 
+function* logoutSaga(action) {
+  try {
+    yield call(gapi.auth2.getAuthInstance().signOut);
+    yield put(logoutSuccess())
+  } catch(e) {
+    console.error(e);
+    yield put(logoutFailure());
+  }
+}
+
 function* rootSaga() {
   yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga);
   yield takeEvery(types.LOGIN.REQUEST, loginSaga);
+  yield takeEvery(types.LOGOUT.REQUEST, logoutSaga);
 
   yield call(delay, 100);
   yield put(googleClientInitRequest());

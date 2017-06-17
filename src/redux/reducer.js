@@ -20,12 +20,6 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loggedIn: action.isLoggedIn,
       };
-    case types.GOOGLE_CLIENT_INIT.FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: true,
-      };
     case types.LOGIN.REQUEST:
       return {
         ...state,
@@ -37,7 +31,20 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loggedIn: true
       };
+    case types.LOGOUT.REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.LOGOUT.SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false
+      };
     case types.LOGIN.FAILURE:
+    case types.GOOGLE_CLIENT_INIT.FAILURE:
+    case types.LOGOUT.FAILURE:
       return {
         ...state,
         loading: false,
