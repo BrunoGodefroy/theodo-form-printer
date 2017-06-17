@@ -1,0 +1,7 @@
+{
+  "name": "theodo-form-printer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bruno Godefroy",
+  "license": "MIT"
+}
