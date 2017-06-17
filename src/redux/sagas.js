@@ -1,7 +1,12 @@
 import { delay } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { types, init } from './actions';
+import {
+  types,
+  googleClientInitRequest,
+  googleClientInitSuccess,
+  googleClientInitFailure,
+} from './actions';
 
 import gapi, { CLIENT_ID, DISCOVERY_DOCS, SCOPES } from '../services/google';
 
@@ -15,17 +20,19 @@ function* initGoogleClient(action) {
         scope: SCOPES
       }
     );
+    yield put(googleClientInitSuccess());
   }
   catch(e) {
     console.error(e);
+    yield put(googleClientInitFailure());
   }
 }
 
 function* rootSaga() {
-  yield takeEvery(types.INIT, initGoogleClient);
+  yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClient);
 
   yield call(delay, 100);
-  yield put(init());
+  yield put(googleClientInitRequest());
 }
 
 export default rootSaga;
