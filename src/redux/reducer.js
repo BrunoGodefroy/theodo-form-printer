@@ -1,4 +1,9 @@
-export default function reducer(state = {}, action = {}) {
+const initialState = {
+  loggedIn: false,
+}
+
+
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     default:
       return state;
