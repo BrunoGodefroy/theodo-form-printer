@@ -34,7 +34,7 @@ function* initGoogleClientSaga(action) {
 
 function* loginSaga(action) {
   try {
-    yield call(gapi.auth2.getAuthInstance().signIn);
+    yield call(gapi.loginAsync);
     yield put(loginSuccess());
   }
   catch(e) {
@@ -45,7 +45,7 @@ function* loginSaga(action) {
 
 function* logoutSaga(action) {
   try {
-    yield call(gapi.auth2.getAuthInstance().signOut);
+    yield call(gapi.logoutAsync);
     yield put(logoutSuccess())
   } catch(e) {
     console.error(e);

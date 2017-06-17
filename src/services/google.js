@@ -10,4 +10,26 @@ gapi.loadAsync = () => new Promise(
   }
 );
 
+gapi.loginAsync = () => new Promise(
+  (resolve, reject) => {
+    gapi.auth2.getAuthInstance().isSignedIn.listen(isSignedIn => {
+      if (isSignedIn) return resolve();
+      else return reject();
+    });
+
+    gapi.auth2.getAuthInstance().signIn();
+  }
+);
+
+gapi.logoutAsync = () => new Promise(
+  (resolve, reject) => {
+    gapi.auth2.getAuthInstance().isSignedIn.listen(isSignedIn => {
+      if (!isSignedIn) return resolve();
+      else return reject();
+    });
+
+    gapi.auth2.getAuthInstance().signOut();
+  }
+);
+
 export default gapi;
