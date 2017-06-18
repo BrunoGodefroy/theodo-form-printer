@@ -4,9 +4,11 @@
   "author": "Bruno Godefroy",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dashboard -- node server.js"
+    "dev": "webpack-dashboard -- node server.js",
+    "build": "webpack"
   },
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",

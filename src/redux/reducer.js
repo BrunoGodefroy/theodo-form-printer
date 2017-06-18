@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   error: false,
   forms: {},
+  isClientLoaded: false,
 }
 
 
@@ -20,6 +21,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loggedIn: action.isLoggedIn,
+        isClientLoaded: true,
       };
     case types.LOGIN.REQUEST:
       return {
