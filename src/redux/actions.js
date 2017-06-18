@@ -25,13 +25,14 @@ export const googleClientInitRequest = () => ({
   type: types.GOOGLE_CLIENT_INIT.REQUEST,
 });
 
-export const googleClientInitSuccess = (isLoggedIn) => ({
+export const googleClientInitSuccess = isLoggedIn => ({
   type: types.GOOGLE_CLIENT_INIT.SUCCESS,
   isLoggedIn,
 });
 
-export const googleClientInitFailure = () => ({
+export const googleClientInitFailure = error => ({
   type: types.GOOGLE_CLIENT_INIT.FAILURE,
+  error,
 });
 
 export const loginRequest = () => ({
@@ -42,8 +43,9 @@ export const loginSuccess = () => ({
   type: types.LOGIN.SUCCESS,
 });
 
-export const loginFailure = () => ({
+export const loginFailure = error => ({
   type: types.LOGIN.FAILURE,
+  error,
 });
 
 export const logoutRequest = () => ({
@@ -54,19 +56,21 @@ export const logoutSuccess = () => ({
   type: types.LOGOUT.SUCCESS,
 });
 
-export const logoutFailure = () => ({
+export const logoutFailure = error => ({
   type: types.LOGOUT.FAILURE,
+  error,
 });
 
 export const fetchFormsRequest = () => ({
   type: types.FETCH_FORMS.REQUEST,
 });
 
-export const fetchFormsSuccess = (forms) => ({
+export const fetchFormsSuccess = forms => ({
   type: types.FETCH_FORMS.SUCCESS,
   forms,
 });
 
-export const fetchFormsFailure = () => ({
+export const fetchFormsFailure = error => ({
   type: types.FETCH_FORMS.FAILURE,
+  error,
 });

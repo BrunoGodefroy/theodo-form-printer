@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { loginRequest, logoutRequest } from '../redux/actions';
-import Button from './ui/Button';
+import { Button } from './ui';
 
 
 class LoginButton extends PureComponent {
