@@ -5,6 +5,7 @@ import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
 import Button from './ui/Button';
 import Loader from './ui/Loader';
+import ListForms from './ui/ListForms';
 
 class App extends PureComponent {
   constructor(props) {
@@ -23,13 +24,7 @@ class App extends PureComponent {
       { this.props.isClientLoaded && <LoginButton /> }
       { this.props.loggedIn && <Button onClick={ this.handleUpdate }>Uptade latest forms</Button> }
       <Loader loading={ this.props.loading } />
-      <ul>
-        { Object.keys(this.props.forms).map(project =>
-          <li key={ `key-${project}` }>
-            <a target="_blank" href={ this.props.forms[project] }>{ project }</a>
-          </li>
-        ) }
-      </ul>
+      <ListForms forms={ this.props.forms } />
     </div>;
   }
 }
