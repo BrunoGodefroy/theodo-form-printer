@@ -13,23 +13,13 @@ gapi.loadAsync = () => new Promise(
 
 gapi.loginAsync = () => new Promise(
   (resolve, reject) => {
-    gapi.auth2.getAuthInstance().isSignedIn.listen(isSignedIn => {
-      if (isSignedIn) return resolve();
-      else return reject();
-    });
-
-    gapi.auth2.getAuthInstance().signIn();
+    gapi.auth2.getAuthInstance().signIn().then(resolve, reject);
   }
 );
 
 gapi.logoutAsync = () => new Promise(
   (resolve, reject) => {
-    gapi.auth2.getAuthInstance().isSignedIn.listen(isSignedIn => {
-      if (!isSignedIn) return resolve();
-      else return reject();
-    });
-
-    gapi.auth2.getAuthInstance().signOut();
+    gapi.auth2.getAuthInstance().signOut().then(resolve, reject);
   }
 );
 
