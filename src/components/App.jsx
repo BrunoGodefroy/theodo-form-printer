@@ -1,28 +1,17 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import loader from './images/loader.gif'
-import { loginRequest, logoutRequest, fetchFormsRequest } from './redux/actions';
+import loader from '../images/loader.gif'
+import { fetchFormsRequest } from '../redux/actions';
 
-import gapi from './services/google';
+import LoginButton from './LoginButton';
 
+import Button from './ui/Button';
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-  }
-
-  handleLogin(event) {
-    event.preventDefault();
-    this.props.loginRequest();
-  }
-
-  handleLogout(event) {
-    event.preventDefault();
-    this.props.logoutRequest();
   }
 
   handleUpdate(event) {
@@ -33,11 +22,8 @@ class App extends PureComponent {
   render() {
     return <div>
       <h1>Theodo Project Form - Print Me</h1>
-      { this.props.loggedIn ?
-        <button onClick={ this.handleLogout }>Logout</button> :
-        <button onClick={ this.handleLogin }>Login</button>
-      }
-      { this.props.loggedIn && <button onClick={ this.handleUpdate }>Uptade latest forms</button> }
+      { this.props.isClientLoaded && <LoginButton /> }
+      { this.props.loggedIn && <Button onClick={ this.handleUpdate }>Uptade latest forms</Button> }
       { this.props.loading && <div><img src={loader} width="100"/></div> }
       <ul>
         { Object.keys(this.props.forms).map(project =>
@@ -51,15 +37,15 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  isClientLoaded: React.PropTypes.bool.isRequired,
   forms: React.PropTypes.object.isRequired,
   loggedIn: React.PropTypes.bool.isRequired,
   loading: React.PropTypes.bool.isRequired,
   fetchFormsRequest: React.PropTypes.func.isRequired,
-  loginRequest: React.PropTypes.func.isRequired,
-  logoutRequest: React.PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ loggedIn, loading, forms }) => ({
+const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded }) => ({
+  isClientLoaded,
   forms,
   loggedIn,
   loading,
@@ -67,8 +53,6 @@ const mapStateToProps = ({ loggedIn, loading, forms }) => ({
 
 const mapDispatchToProps = {
   fetchFormsRequest,
-  loginRequest,
-  logoutRequest,
 };
 
 
