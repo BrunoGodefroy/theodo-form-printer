@@ -29,8 +29,7 @@ function* initGoogleClientSaga(action) {
     yield put(googleClientInitSuccess(gapi.auth2.getAuthInstance().isSignedIn.get()));
   }
   catch(e) {
-    console.error(e);
-    yield put(googleClientInitFailure());
+    yield put(googleClientInitFailure('Problem while loading google client. Please check your connection.'));
   }
 }
 
@@ -40,8 +39,7 @@ function* loginSaga(action) {
     yield put(loginSuccess());
   }
   catch(e) {
-    console.error(e);
-    yield put(loginFailure());
+    yield put(loginFailure('Authentication failed. Please try again'));
   }
 }
 
@@ -50,8 +48,7 @@ function* logoutSaga(action) {
     yield call(gapi.logoutAsync);
     yield put(logoutSuccess());
   } catch(e) {
-    console.error(e);
-    yield put(logoutFailure());
+    yield put(logoutFailure('Logout failed. Please try again'));
   }
 }
 
@@ -69,8 +66,7 @@ function* fetchLatestForms(action) {
     }
     yield put(fetchFormsSuccess(response.result.response.result));
   } catch(e) {
-    console.error(e);
-    yield put(fetchFormsFailure());
+    yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'));
   }
 }
 

@@ -6,6 +6,7 @@ import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
 import Button from './ui/Button';
 import Loader from './ui/Loader';
+import Error from './ui/Error';
 import ListForms from './ui/ListForms';
 
 class App extends PureComponent {
@@ -22,6 +23,7 @@ class App extends PureComponent {
   render() {
     return <div>
       <h1>Theodo Project Form - Print Me</h1>
+      { this.props.error && <Error message={ this.props.errorMessage } /> }
       { this.props.isClientLoaded && <LoginButton /> }
       { this.props.loggedIn && <Button onClick={ this.handleUpdate }>Uptade latest forms</Button> }
       <Loader loading={ this.props.loading } />
@@ -31,6 +33,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  error: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   isClientLoaded: PropTypes.bool.isRequired,
   forms: PropTypes.object.isRequired,
   loggedIn: PropTypes.bool.isRequired,
@@ -38,7 +42,9 @@ App.propTypes = {
   fetchFormsRequest: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded }) => ({
+const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded, error, errorMessage }) => ({
+  error,
+  errorMessage,
   isClientLoaded,
   forms,
   loggedIn,
