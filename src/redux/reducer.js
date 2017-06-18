@@ -6,6 +6,7 @@ const initialState = {
   error: false,
   forms: {},
   isClientLoaded: false,
+  errorMessage: '',
 }
 
 
@@ -22,6 +23,7 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loggedIn: action.isLoggedIn,
         isClientLoaded: true,
+        error: false,
       };
     case types.LOGIN.REQUEST:
       return {
@@ -32,7 +34,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        loggedIn: true
+        loggedIn: true,
+        error: false,
       };
     case types.LOGOUT.REQUEST:
       return {
@@ -43,7 +46,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        loggedIn: false
+        loggedIn: false,
+        error: false,
       };
     case types.FETCH_FORMS.REQUEST:
       return {
@@ -55,6 +59,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         forms: action.forms,
+        error: false,
       };
     case types.LOGIN.FAILURE:
     case types.GOOGLE_CLIENT_INIT.FAILURE:
@@ -64,6 +69,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         error: true,
+        errorMessage: action.error,
       };
     default:
       return state;
