@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
@@ -30,11 +31,11 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  isClientLoaded: React.PropTypes.bool.isRequired,
-  forms: React.PropTypes.object.isRequired,
-  loggedIn: React.PropTypes.bool.isRequired,
-  loading: React.PropTypes.bool.isRequired,
-  fetchFormsRequest: React.PropTypes.func.isRequired,
+  isClientLoaded: PropTypes.bool.isRequired,
+  forms: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  fetchFormsRequest: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded }) => ({

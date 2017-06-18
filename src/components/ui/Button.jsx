@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 
 class Button extends PureComponent {
@@ -8,8 +9,8 @@ class Button extends PureComponent {
 }
 
 Button.propTypes = {
-  onClick: React.PropTypes.func,
-  children: React.PropTypes.node,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
 }
 
 export default Button;

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class ListForms extends PureComponent {
   render() {
@@ -13,7 +14,7 @@ class ListForms extends PureComponent {
 }
 
 ListForms.propTypes = {
-  forms: React.PropTypes.object.isRequired,
+  forms: PropTypes.object.isRequired,
 }
 
 export default ListForms;
