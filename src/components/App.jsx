@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import loader from '../images/loader.gif'
 import { fetchFormsRequest } from '../redux/actions';
-
 import LoginButton from './LoginButton';
-
 import Button from './ui/Button';
+import Loader from './ui/Loader';
 
 class App extends PureComponent {
   constructor(props) {
@@ -24,7 +22,7 @@ class App extends PureComponent {
       <h1>Theodo Project Form - Print Me</h1>
       { this.props.isClientLoaded && <LoginButton /> }
       { this.props.loggedIn && <Button onClick={ this.handleUpdate }>Uptade latest forms</Button> }
-      { this.props.loading && <div><img src={loader} width="100"/></div> }
+      <Loader loading={ this.props.loading } />
       <ul>
         { Object.keys(this.props.forms).map(project =>
           <li key={ `key-${project}` }>
