@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
-import Button from './ui/Button';
-import Loader from './ui/Loader';
-import Error from './ui/Error';
-import ListForms from './ui/ListForms';
+import {
+  Button,
+  Loader,
+  Error,
+  ListForms,
+} from './ui';
 
 class App extends PureComponent {
   constructor(props) {
