@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { loginRequest, logoutRequest } from '../redux/actions';
 import Button from './ui/Button';
@@ -30,9 +31,9 @@ class LoginButton extends PureComponent {
 }
 
 LoginButton.propTypes = {
-  loggedIn: React.PropTypes.bool.isRequired,
-  loginRequest: React.PropTypes.func.isRequired,
-  logoutRequest: React.PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  loginRequest: PropTypes.func.isRequired,
+  logoutRequest: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ loggedIn }) => ({

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import loader from '../../images/loader.gif';
 
@@ -9,7 +10,7 @@ class Loader extends PureComponent {
 }
 
 Loader.propTypes = {
-  loading: React.PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 }
 
 export default Loader;
