@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Message } from 'semantic-ui-react'
 
 
 class Error extends PureComponent {
   render() {
-    return <pre>{ this.props.message }</pre>;
+    return <Message negative>{ this.props.children }</Message>;
   }
 }
 
 Error.propTypes = {
-  message: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default Error;
