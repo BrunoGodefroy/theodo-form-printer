@@ -24,7 +24,7 @@ class App extends PureComponent {
   render() {
     return <Container text textAlign="center">
       <Header as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
-      { this.props.error && <Error message={ this.props.errorMessage } /> }
+      { this.props.error && <Error>{ this.props.errorMessage }</Error> }
       { this.props.isClientLoaded && <LoginButton /> }
       { this.props.loggedIn && <Button
         onClick={ this.handleUpdate }
