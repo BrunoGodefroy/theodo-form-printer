@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import loader from '../../images/loader.gif';
-
 class Loader extends PureComponent {
   render() {
     return this.props.loading && <div><img src={loader} width="100"/></div>;
