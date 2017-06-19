@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Button, Header, Container } from 'semantic-ui-react';
 
 import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
@@ -23,8 +23,8 @@ class App extends PureComponent {
   }
 
   render() {
-    return <div>
-      <h1>Theodo Project Form - Print Me</h1>
+    return <Container text textAlign="center">
+      <Header as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
       { this.props.error && <Error message={ this.props.errorMessage } /> }
       { this.props.isClientLoaded && <LoginButton /> }
       { this.props.loggedIn && <Button
@@ -35,7 +35,7 @@ class App extends PureComponent {
       </Button> }
       <Loader loading={ this.props.loading } />
       <ListForms forms={ this.props.forms } />
-    </div>;
+    </Container>;
   }
 }
 
