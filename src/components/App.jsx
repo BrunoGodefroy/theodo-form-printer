@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, Header, Container } from 'semantic-ui-react';
+import { Button, Header, Container, Loader, Dimmer } from 'semantic-ui-react';
 
 import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
 import {
-  Loader,
   Error,
   ListForms,
 } from './ui';
@@ -33,8 +32,13 @@ class App extends PureComponent {
         >
         Uptade latest forms
       </Button> }
-      <Loader loading={ this.props.loading } />
-      <ListForms forms={ this.props.forms } />
+      <Container textAlign="left">
+        <Dimmer active={ this.props.loading } inverted>
+          <Loader inverted>Loading</Loader>
+        </Dimmer>
+        <Header as="h2">The last 5 project forms</Header>
+        <ListForms forms={ this.props.forms } />
+      </Container>
     </Container>;
   }
 }
