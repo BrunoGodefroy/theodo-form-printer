@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button, Header, Container, Loader, Dimmer } from 'semantic-ui-react';
 
 import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
 import {
-  Button,
-  Loader,
   Error,
   ListForms,
 } from './ui';
@@ -23,14 +22,24 @@ class App extends PureComponent {
   }
 
   render() {
-    return <div>
-      <h1>Theodo Project Form - Print Me</h1>
-      { this.props.error && <Error message={ this.props.errorMessage } /> }
+    return <Container text textAlign="center">
+      <Header as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
+      { this.props.error && <Error>{ this.props.errorMessage }</Error> }
       { this.props.isClientLoaded && <LoginButton /> }
-      { this.props.loggedIn && <Button onClick={ this.handleUpdate }>Uptade latest forms</Button> }
-      <Loader loading={ this.props.loading } />
-      <ListForms forms={ this.props.forms } />
-    </div>;
+      { this.props.loggedIn && <Button
+        onClick={ this.handleUpdate }
+        disabled={ this.props.loading }
+        >
+        Uptade latest forms
+      </Button> }
+      <Container textAlign="left">
+        <Dimmer active={ this.props.loading } inverted>
+          <Loader inverted>Loading</Loader>
+        </Dimmer>
+        <Header as="h2">The last 5 project forms</Header>
+        <ListForms forms={ this.props.forms } />
+      </Container>
+    </Container>;
   }
 }
 
