@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button } from 'semantic-ui-react';
 
 import { fetchFormsRequest } from '../redux/actions';
 import LoginButton from './LoginButton';
 import {
-  Button,
   Loader,
   Error,
   ListForms,
@@ -27,7 +27,12 @@ class App extends PureComponent {
       <h1>Theodo Project Form - Print Me</h1>
       { this.props.error && <Error message={ this.props.errorMessage } /> }
       { this.props.isClientLoaded && <LoginButton /> }
-      { this.props.loggedIn && <Button onClick={ this.handleUpdate }>Uptade latest forms</Button> }
+      { this.props.loggedIn && <Button
+        onClick={ this.handleUpdate }
+        disabled={ this.props.loading }
+        >
+        Uptade latest forms
+      </Button> }
       <Loader loading={ this.props.loading } />
       <ListForms forms={ this.props.forms } />
     </div>;

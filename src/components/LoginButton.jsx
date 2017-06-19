@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button } from 'semantic-ui-react';
 
 import { loginRequest, logoutRequest } from '../redux/actions';
-import { Button } from './ui';
 
 
 class LoginButton extends PureComponent {
@@ -25,8 +25,8 @@ class LoginButton extends PureComponent {
 
   render() {
     return this.props.loggedIn ?
-      <Button onClick={ this.handleLogout }>Logout</Button> :
-      <Button onClick={ this.handleLogin }>Login</Button>;
+      <Button onClick={ this.handleLogout } disabled={ this.props.loading }>Logout</Button> :
+      <Button onClick={ this.handleLogin } disabled={ this.props.loading }>Login</Button>;
   }
 }
 
@@ -34,10 +34,12 @@ LoginButton.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   loginRequest: PropTypes.func.isRequired,
   logoutRequest: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = ({ loggedIn }) => ({
+const mapStateToProps = ({ loggedIn, loading }) => ({
   loggedIn,
+  loading,
 });
 
 const mapDispatchToProps = {
