@@ -47,7 +47,7 @@ App.propTypes = {
   error: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   isClientLoaded: PropTypes.bool.isRequired,
-  forms: PropTypes.object.isRequired,
+  forms: PropTypes.array.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   fetchFormsRequest: PropTypes.func.isRequired,

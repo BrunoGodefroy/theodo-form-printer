@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
 
 import {
   types,
@@ -10,6 +10,7 @@ import {
   loginFailure,
   logoutSuccess,
   logoutFailure,
+  fetchFormsRequest,
   fetchFormsSuccess,
   fetchFormsFailure,
 } from './actions';
@@ -70,11 +71,17 @@ function* fetchLatestForms(action) {
   }
 }
 
+function* triggerFetchFormSaga(action) {
+  const loggedIn = yield select(state => state.loggedIn);
+  if (loggedIn) yield put(fetchFormsRequest());
+}
+
 function* rootSaga() {
   yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga);
   yield takeEvery(types.LOGIN.REQUEST, loginSaga);
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga);
   yield takeEvery(types.FETCH_FORMS.REQUEST, fetchLatestForms);
+  yield takeEvery([types.LOGIN.SUCCESS, types.GOOGLE_CLIENT_INIT.SUCCESS], triggerFetchFormSaga)
 
   yield call(delay, 100);
   yield put(googleClientInitRequest());

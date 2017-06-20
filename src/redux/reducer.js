@@ -4,7 +4,7 @@ const initialState = {
   loggedIn: false,
   loading: false,
   error: false,
-  forms: {},
+  forms: [],
   isClientLoaded: false,
   errorMessage: '',
 }
