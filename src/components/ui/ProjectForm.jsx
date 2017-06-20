@@ -29,14 +29,12 @@ class ProjectForm extends PureComponent {
       </Segment>
       <Segment vertical>
         <Header as="h3">What is the main priority the team should concentrate on to improve the score?</Header>
-        <p>
-          { this.props.form['client-voice'] }
-        </p>
+        { this.props.form['client-voice'].split(/\n/).map(string => <p>{ string }</p>) }
       </Segment>
       <Segment vertical>
         <Header as="h3">Should you have a magic wand, what is "the" thing you would change at Theodo?</Header>
         <p>
-          { this.props.form['magic-wand'] }
+          { this.props.form['magic-wand'].split(/\n/).map(string => <p>{ string }</p>) }
         </p>
       </Segment>
       <Segment vertical>
