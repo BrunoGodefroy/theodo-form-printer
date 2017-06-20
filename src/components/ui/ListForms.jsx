@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { List, Accordion } from 'semantic-ui-react';
+import { Accordion } from 'semantic-ui-react';
+import ProjectForm from './ProjectForm';
 
 class ListForms extends PureComponent {
   render() {
     const panels = this.props.forms.map(form =>({
       title: form.project,
-      content: form.project,
+      content: <ProjectForm form={ form } />,
     }));
 
     if (this.props.forms.length > 0) {
