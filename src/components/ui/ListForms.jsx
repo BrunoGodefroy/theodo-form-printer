@@ -6,7 +6,7 @@ import ProjectForm from './ProjectForm';
 class ListForms extends PureComponent {
   render() {
     const panels = this.props.forms.map(form =>({
-      title: form.project,
+      title: `${form.project} - Sprint ${form.sprint}`,
       content: <ProjectForm form={ form } />,
     }));
 

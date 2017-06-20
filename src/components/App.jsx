@@ -23,20 +23,21 @@ class App extends PureComponent {
 
   render() {
     return <Container text textAlign="center">
-      <Header as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
-      { this.props.error && <Error>{ this.props.errorMessage }</Error> }
-      { this.props.isClientLoaded && <LoginButton /> }
+      <Header className="no-print" as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
+      { this.props.error && <Error className="no-print">{ this.props.errorMessage }</Error> }
+      { this.props.isClientLoaded && <LoginButton className="no-print"/> }
       { this.props.loggedIn && <Button
+        className="no-print"
         onClick={ this.handleUpdate }
         disabled={ this.props.loading }
         >
         Uptade latest forms
       </Button> }
       <Container textAlign="left">
-        <Dimmer active={ this.props.loading } inverted>
+        <Dimmer className="no-print" active={ this.props.loading } inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
-        <Header as="h2">The last 5 project forms</Header>
+        <Header as="h2" className="no-print">The last 5 project forms</Header>
         <ListForms forms={ this.props.forms } />
       </Container>
     </Container>;

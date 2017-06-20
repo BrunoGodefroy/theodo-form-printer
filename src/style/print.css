@@ -1,0 +1,29 @@
+.no-print {
+  display: none !important;
+}
+
+@page {
+  size: A4 landscape;
+}
+
+.ui.form {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  -ms-column-count: 2;
+  column-count: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 210mm !important;
+  width: 297mm !important;
+  background: white;
+}
+
+.ui.vertical.segment {
+  position: static;
+}
+
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
