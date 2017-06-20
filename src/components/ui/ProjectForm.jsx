@@ -4,11 +4,22 @@ import { Form, Segment, Header, Button, Icon } from 'semantic-ui-react'
 
 
 class ProjectForm extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.printForm = this.printForm.bind(this)
+  }
+
+  printForm(event, data) {
+    event.preventDefault();
+    print();
+  }
+
   render() {
     return <Form>
-      <Button icon>
+      <Button className="no-print" onClick={ this.printForm } icon>
         <Icon name='print' />
       </Button>
+      <Header as="h2">Theodo Project Form</Header>
       <Segment vertical>
         <Header as="h3">How do you feel about the speed of the team?</Header>
         <Form.Radio label='0 - Not good at all' checked={ this.props.form.speed ==='0 - Not good at all' } />
@@ -29,13 +40,11 @@ class ProjectForm extends PureComponent {
       </Segment>
       <Segment vertical>
         <Header as="h3">What is the main priority the team should concentrate on to improve the score?</Header>
-        { this.props.form['client-voice'].split(/\n/).map(string => <p>{ string }</p>) }
+        { this.props.form['client-voice'].split(/\n/).map((string, index) => <p key={`client-voice-${index}`}>{ string }</p>) }
       </Segment>
       <Segment vertical>
         <Header as="h3">Should you have a magic wand, what is "the" thing you would change at Theodo?</Header>
-        <p>
-          { this.props.form['magic-wand'].split(/\n/).map(string => <p>{ string }</p>) }
-        </p>
+        { this.props.form['magic-wand'].split(/\n/).map((string, index) => <p key={`magix-wand-${index}`}>{ string }</p>) }
       </Segment>
       <Segment vertical>
         <Header as="h3">Would you recommend Theodo?</Header>

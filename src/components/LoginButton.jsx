@@ -25,8 +25,8 @@ class LoginButton extends PureComponent {
 
   render() {
     return this.props.loggedIn ?
-      <Button onClick={ this.handleLogout } disabled={ this.props.loading }>Logout</Button> :
-      <Button onClick={ this.handleLogin } disabled={ this.props.loading }>Login</Button>;
+      <Button className={ this.props.className } onClick={ this.handleLogout } disabled={ this.props.loading }>Logout</Button> :
+      <Button className={ this.props.className } onClick={ this.handleLogin } disabled={ this.props.loading }>Login</Button>;
   }
 }
 
@@ -35,6 +35,7 @@ LoginButton.propTypes = {
   loginRequest: PropTypes.func.isRequired,
   logoutRequest: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 }
 
 const mapStateToProps = ({ loggedIn, loading }) => ({
