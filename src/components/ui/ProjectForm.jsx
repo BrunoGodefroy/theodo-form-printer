@@ -19,7 +19,6 @@ class ProjectForm extends PureComponent {
       <Button className="no-print" onClick={ this.printForm } icon>
         <Icon name='print' />
       </Button>
-      <Header as="h2">Theodo Project Form</Header>
       <Segment vertical>
         <Header as="h3">How do you feel about the speed of the team?</Header>
         <Form.Radio label='0 - Not good at all' checked={ this.props.form.speed ==='0 - Not good at all' } />

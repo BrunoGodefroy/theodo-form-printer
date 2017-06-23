@@ -4,23 +4,64 @@
 
 @page {
   size: A4 landscape;
+  margin: 15mm 20mm;
 }
 
-.ui.form {
+.ui.accordion .active.content {
   -webkit-column-count: 2;
   -moz-column-count: 2;
   -ms-column-count: 2;
   column-count: 2;
+  -webkit-column-gap: 30mm;
+  -moz-column-gap: 30mm;
+  -ms-column-gap: 30mm;
+  column-gap: 30mm;
   position: fixed;
-  top: 0;
-  left: 0;
   height: 210mm !important;
-  width: 297mm !important;
+  width: 257mm !important;
   background: white;
+  padding: 0;
+}
+
+.ui.styled.accordion {
+  width: 297mm !important;
+  box-shadow: none;
+}
+
+.ui.text.container {
+  max-width: 297mm !important;
+}
+
+.ui.accordion .active.title .dropdown.icon {
+  display: none;
+}
+
+.ui.accordion .active.title {
+  font-size: 1.5em;
+  display: block;
+  text-align: center;
+  border: 0;
+}
+
+.ui.accordion .active.title::before {
+    content: "Theodo Project Form - ";
 }
 
 .ui.vertical.segment {
   position: static;
+}
+
+.title {
+  display: none;
+}
+
+.ui.checkbox label,
+.ui.segment {
+  font-size: 0.8rem;
+}
+
+h3.ui.header {
+  font-size: 1rem;
 }
 
 * {
