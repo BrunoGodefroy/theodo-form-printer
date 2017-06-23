@@ -37,7 +37,7 @@ class App extends PureComponent {
         <Dimmer className="no-print" active={ this.props.loading } inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
-        <Header as="h2" className="no-print">The last 5 project forms</Header>
+        <Header as="h2" className="no-print">The lastest project forms</Header>
         <ListForms forms={ this.props.forms } />
       </Container>
     </Container>;
