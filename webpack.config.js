@@ -1,10 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname)
 
 module.exports = function(env) {
   let plugins = [
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
   ];
 
   if (env && env.production) {
@@ -13,7 +17,12 @@ module.exports = function(env) {
       minimize: true,
       comments: false,
       sourceMap: true,
-    }))
+    }));
+    plugins.push(new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }));
   }
 
   return {
@@ -21,14 +30,10 @@ module.exports = function(env) {
     output: {
       path: path.resolve(ROOT_PATH, './'),
       publicPath: '/',
-      filename: 'bundle.js',
+      filename: 'bundle.[hash].js',
     },
     module: {
       rules: [
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader']
-        },
         {
           test: /\.(gif|png|svg)$/,
           use: ['url-loader', 'img-loader']
@@ -37,11 +42,6 @@ module.exports = function(env) {
           test: /\.jsx?$/,
           use: ['react-hot-loader', 'babel-loader'],
           exclude: /node_modules/
-        },
-        {
-          test: /\.less$/,
-          use: ['style-loader', 'css-loader', 'less-loader'],
-          exclude: /\landing.less$/
         },
       ]
     },
