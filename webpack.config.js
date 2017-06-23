@@ -13,14 +13,13 @@ module.exports = function(env) {
   ];
 
   if (env && env.production) {
-    plugins.append(new webpack.optimize.UglifyJsPlugin({
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       minimize: true,
       comments: false,
       sourceMap: true,
     }))
   }
-
 
   return {
     entry: ['babel-polyfill', './src/index.jsx'],
