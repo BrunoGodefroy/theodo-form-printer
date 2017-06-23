@@ -7,7 +7,7 @@ module.exports = function(env) {
   let plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './index_template.html',
     }),
   ];
 
@@ -29,7 +29,7 @@ module.exports = function(env) {
     entry: ['babel-polyfill', './src/index.jsx'],
     output: {
       path: path.resolve(ROOT_PATH, './'),
-      publicPath: '/',
+      publicPath: './',
       filename: 'bundle.[hash].js',
     },
     module: {
