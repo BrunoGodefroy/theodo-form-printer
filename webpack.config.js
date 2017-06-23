@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const ROOT_PATH = path.resolve(__dirname)
 
 module.exports = function(env) {
@@ -8,7 +9,9 @@ module.exports = function(env) {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './index_template.html',
+      alwaysWriteToDisk: true,
     }),
+    new HtmlWebpackHarddiskPlugin(),
   ];
 
   if (env && env.production) {
@@ -29,7 +32,7 @@ module.exports = function(env) {
     entry: ['babel-polyfill', './src/index.jsx'],
     output: {
       path: path.resolve(ROOT_PATH, './'),
-      publicPath: './',
+      publicPath: '',
       filename: 'bundle.[hash].js',
     },
     module: {
