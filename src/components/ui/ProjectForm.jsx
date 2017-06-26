@@ -21,21 +21,21 @@ class ProjectForm extends PureComponent {
       </Button>
       <Segment vertical>
         <Header as="h3">How do you feel about the speed of the team?</Header>
-        <Form.Radio label='0 - Not good at all' checked={ this.props.form.speed ==='0 - Not good at all' } />
-        <Form.Radio label='1 - Not good' checked={ this.props.form.speed ==='1 - Not good' } />
-        <Form.Radio label='2 - Average' checked={ this.props.form.speed ==='2 - Average' } />
-        <Form.Radio label='3 - Good' checked={ this.props.form.speed ==='3 - Good' } />
-        <Form.Radio label='4 - Very Good' checked={ this.props.form.speed ==='4 - Very Good' } />
         <Form.Radio label='5 - Excellent' checked={ this.props.form.speed ==='5 - Excellent' } />
+        <Form.Radio label='4 - Very Good' checked={ this.props.form.speed ==='4 - Very Good' } />
+        <Form.Radio label='3 - Good' checked={ this.props.form.speed ==='3 - Good' } />
+        <Form.Radio label='2 - Average' checked={ this.props.form.speed ==='2 - Average' } />
+        <Form.Radio label='1 - Not good' checked={ this.props.form.speed ==='1 - Not good' } />
+        <Form.Radio label='0 - Not good at all' checked={ this.props.form.speed ==='0 - Not good at all' } />
       </Segment>
       <Segment vertical>
         <Header as="h3">How do you feel about the quality of the collaboration with Theodo?</Header>
-        <Form.Radio label='0 - Not good at all' checked={ this.props.form.colaboration ==='0 - Not good at all' } />
-        <Form.Radio label='1 - Not good' checked={ this.props.form.colaboration ==='1 - Not good' } />
-        <Form.Radio label='2 - Average' checked={ this.props.form.colaboration ==='2 - Average' } />
-        <Form.Radio label='3 - Good' checked={ this.props.form.colaboration ==='3 - Good' } />
-        <Form.Radio label='4 - Very Good' checked={ this.props.form.colaboration ==='4 - Very Good' } />
         <Form.Radio label='5 - Excellent' checked={ this.props.form.colaboration ==='5 - Excellent' } />
+        <Form.Radio label='4 - Very Good' checked={ this.props.form.colaboration ==='4 - Very Good' } />
+        <Form.Radio label='3 - Good' checked={ this.props.form.colaboration ==='3 - Good' } />
+        <Form.Radio label='2 - Average' checked={ this.props.form.colaboration ==='2 - Average' } />
+        <Form.Radio label='1 - Not good' checked={ this.props.form.colaboration ==='1 - Not good' } />
+        <Form.Radio label='0 - Not good at all' checked={ this.props.form.colaboration ==='0 - Not good at all' } />
       </Segment>
       <Segment vertical>
         <Header as="h3">What is the main priority the team should concentrate on to improve the score?</Header>
