@@ -31,13 +31,13 @@ class App extends PureComponent {
         onClick={ this.handleUpdate }
         disabled={ this.props.loading }
         >
-        Uptade latest forms
+        Uptade project forms
       </Button> }
       <Container textAlign="left">
         <Dimmer className="no-print" active={ this.props.loading } inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
-        <Header as="h2" className="no-print">The lastest project forms</Header>
+        <Header as="h2" className="no-print">The latest project forms</Header>
         <ListForms forms={ this.props.forms } />
       </Container>
     </Container>;
