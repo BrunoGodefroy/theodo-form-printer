@@ -11,13 +11,13 @@ class ListForms extends PureComponent {
 
       if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) > 8 && form.recommendation === 'Yes, absolutely') {
         if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) == 10){
-          label = <Label color="green">WOW!</Label>;
+          label = <Label color="green" className="pinned">WOW!</Label>;
         } else {
-          label = <Label color="olive">Success</Label>;
+          label = <Label color="olive" className="pinned">Success</Label>;
         }
       }
       else {
-        label = <Label color="red">Red bucket</Label>;
+        label = <Label color="red" className="pinned">Red bucket</Label>;
       }
 
       return {
