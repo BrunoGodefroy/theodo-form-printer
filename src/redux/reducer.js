@@ -5,6 +5,8 @@ const initialState = {
   loading: false,
   error: false,
   forms: [],
+  isCompanyChosen: false,
+  selectedCompany: '',
   isClientLoaded: false,
   errorMessage: '',
 }
@@ -71,6 +73,12 @@ export default function reducer(state = initialState, action = {}) {
         error: true,
         errorMessage: action.error,
       };
+    case types.COMPANY_SELECTED:
+      return {
+        ...state,
+        isCompanyChosen: true,
+        selectedCompany: action.company,
+      }
     default:
       return state;
   }
