@@ -19,10 +19,17 @@ export const types = {
     SUCCESS: 'FETCH_FORMS_SUCCESS',
     FAILURE: 'FETCH_FORMS_FAILURE',
   },
+  COMPANY_SELECTED: 'COMPANY_SELECTED'
 };
 
-export const googleClientInitRequest = () => ({
+export const companies = {
+  THEODO_UK: 'THEODO_UK',
+  THEODO_FR: 'THEODO_FR',
+}
+
+export const googleClientInitRequest = (company) => ({
   type: types.GOOGLE_CLIENT_INIT.REQUEST,
+  company,
 });
 
 export const googleClientInitSuccess = isLoggedIn => ({
@@ -74,3 +81,8 @@ export const fetchFormsFailure = error => ({
   type: types.FETCH_FORMS.FAILURE,
   error,
 });
+
+export const chooseCompany = (company) => ({
+  type: types.COMPANY_SELECTED,
+  company,
+})
