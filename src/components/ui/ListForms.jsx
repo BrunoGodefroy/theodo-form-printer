@@ -9,11 +9,11 @@ class ListForms extends PureComponent {
     const panels = this.props.forms.map(form =>{
 
       let label;
-      
+
       switch(this.props.company) {
         case companies.FASTIT:
         case companies.THEODO_FR:
-          if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) > 8 && form.recommendation === 'Oui bien sûr') {
+          if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) >= 8 && form.recommendation === 'Oui bien sûr') {
             if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) == 10){
               label = <Label color="green" className="pinned">WOW!</Label>;
             } else {
@@ -25,7 +25,7 @@ class ListForms extends PureComponent {
           }
           break;
         default:
-          if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) > 8 && form.recommendation === 'Yes, absolutely') {
+          if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) >= 8 && form.recommendation === 'Yes, absolutely') {
             if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) == 10){
               label = <Label color="green" className="pinned">WOW!</Label>;
             } else {
