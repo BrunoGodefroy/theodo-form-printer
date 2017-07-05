@@ -23,12 +23,10 @@ The dev server is listening on `localhost:8000`
 
 Merge `master` in `gh-pages`
 
-then run:
+then run on the `gh-pages` branch:
 
 ```bash
-git checkout gh-pages
-yarn build
-git push
+./deploy.sh
 ```
 
 The new version of the website is available at [https://brunogodefroy.github.io/theodo-form-printer/](https://brunogodefroy.github.io/theodo-form-printer/)

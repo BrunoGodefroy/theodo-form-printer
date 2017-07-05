@@ -9,7 +9,7 @@ class ListForms extends PureComponent {
 
       let label;
 
-      if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) > 8 && form.recommendation === 'Yes, absolutely') {
+      if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) >= 8 && form.recommendation === 'Yes, absolutely') {
         if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) == 10){
           label = <Label color="green" className="pinned">WOW!</Label>;
         } else {
