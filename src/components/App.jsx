@@ -31,7 +31,7 @@ class App extends PureComponent {
         onClick={ this.handleUpdate }
         disabled={ this.props.loading }
         >
-        Uptade project forms
+        Update project forms
       </Button> }
       <Container textAlign="left">
         <Dimmer className="no-print" active={ this.props.loading } inverted>
