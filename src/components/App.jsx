@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button, Header, Container, Loader, Dimmer } from 'semantic-ui-react';
 
-import { fetchFormsRequest } from '../redux/actions';
+import { fetchFormsRequest, chooseCompany, companies } from '../redux/actions';
 import LoginButton from './LoginButton';
 import {
   Error,
@@ -14,6 +14,8 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.selectFRCompany = this.selectFRCompany.bind(this);
+    this.selectUKCompany = this.selectUKCompany.bind(this);
   }
 
   handleUpdate(event) {
@@ -21,9 +23,19 @@ class App extends PureComponent {
     this.props.fetchFormsRequest();
   }
 
+  selectUKCompany() {
+    this.props.chooseCompany(companies.THEODO_UK)
+  }
+
+  selectFRCompany() {
+    this.props.chooseCompany(companies.THEODO_FR)
+  }
+
   render() {
     return <Container text textAlign="center">
       <Header className="no-print" as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
+      <Button onClick={ this.selectFRCompany } >Theodo FR</Button>
+      <Button onClick={ this.selectUKCompany } >Theodo UK</Button>
       { this.props.error && <Error className="no-print">{ this.props.errorMessage }</Error> }
       { this.props.isClientLoaded && <LoginButton className="no-print"/> }
       { this.props.loggedIn && <Button
@@ -52,6 +64,7 @@ App.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   fetchFormsRequest: PropTypes.func.isRequired,
+  chooseCompany: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded, error, errorMessage }) => ({
@@ -65,6 +78,7 @@ const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded, error, erro
 
 const mapDispatchToProps = {
   fetchFormsRequest,
+  chooseCompany,
 };
 
 
