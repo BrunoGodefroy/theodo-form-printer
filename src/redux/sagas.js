@@ -15,15 +15,18 @@ import {
   fetchFormsFailure,
 } from './actions';
 
-import gapi, { CLIENT_ID, DISCOVERY_DOCS, SCOPES, SCRIPT_ID } from '../services/google';
+import gapi, { DISCOVERY_DOCS, SCOPES } from '../services/google';
 
 function* initGoogleClientSaga(action) {
+
+  const clientId = yield select(state => state.clientId)
+
   try {
     yield call(gapi.loadAsync);
     yield call(
       gapi.client.init, {
         discoveryDocs: DISCOVERY_DOCS,
-        clientId: CLIENT_ID,
+        clientId,
         scope: SCOPES
       }
     );
@@ -54,9 +57,11 @@ function* logoutSaga(action) {
 }
 
 function* fetchLatestForms(action) {
+  const scriptId = yield select(state => state.scriptId)
+
   try {
     const response = yield call(gapi.client.script.scripts.run, {
-      'scriptId': SCRIPT_ID,
+      scriptId,
       'resource': {
         'function': 'getLastResponsesUrl'
       }
@@ -76,7 +81,12 @@ function* triggerFetchFormSaga(action) {
   if (loggedIn) yield put(fetchFormsRequest());
 }
 
+function* initApp(action) {
+  yield put(googleClientInitRequest(action.company));
+}
+
 function* rootSaga() {
+  yield takeEvery(types.COMPANY_SELECTED, initApp);
   yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga);
   yield takeEvery(types.LOGIN.REQUEST, loginSaga);
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga);
@@ -84,7 +94,6 @@ function* rootSaga() {
   yield takeEvery([types.LOGIN.SUCCESS, types.GOOGLE_CLIENT_INIT.SUCCESS], triggerFetchFormSaga)
 
   yield call(delay, 100);
-  yield put(googleClientInitRequest());
 }
 
 export default rootSaga;

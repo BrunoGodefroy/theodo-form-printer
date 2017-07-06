@@ -5,10 +5,15 @@ const initialState = {
   loading: false,
   error: false,
   forms: [],
+  isCompanyChosen: false,
+  selectedCompany: '',
   isClientLoaded: false,
   errorMessage: '',
+  scriptId: '',
+  clientId: '',
 }
 
+import gapi from '../services/google';
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -71,6 +76,14 @@ export default function reducer(state = initialState, action = {}) {
         error: true,
         errorMessage: action.error,
       };
+    case types.COMPANY_SELECTED:
+      const ids = gapi.selectCompany(action.company)
+      return {
+        ...state,
+        isCompanyChosen: true,
+        selectedCompany: action.company,
+        ...ids
+      }
     default:
       return state;
   }
