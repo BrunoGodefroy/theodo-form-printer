@@ -3,6 +3,7 @@ import { call, put, takeEvery, select } from 'redux-saga/effects';
 
 import {
   types,
+  companies,
   googleClientInitRequest,
   googleClientInitSuccess,
   googleClientInitFailure,
@@ -55,11 +56,26 @@ function* logoutSaga(action) {
 }
 
 function* fetchLatestForms(action) {
+
+  const company = yield select(state => state.selectedCompany)
+  var getFormFunctionName
+  switch(company) {
+    case companies.THEODO_FR:
+      getFormFunctionName = 'getTheodoForms'
+      break;
+    case companies.THEODO_UK:
+      getFormFunctionName = 'getTheodoUKForms'
+      break;
+    case companies.FASTIT:
+      getFormFunctionName = 'getFastITForms'
+      break;
+  }
+
   try {
     const response = yield call(gapi.client.script.scripts.run, {
       scriptId: SCRIPT_ID,
       'resource': {
-        'function': 'getTheodoForms'
+        'function': getFormFunctionName
       }
     });
     if (response.result.error) {
