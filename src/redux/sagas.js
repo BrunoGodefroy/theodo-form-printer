@@ -15,18 +15,16 @@ import {
   fetchFormsFailure,
 } from './actions';
 
-import gapi, { DISCOVERY_DOCS, SCOPES } from '../services/google';
+import gapi, { DISCOVERY_DOCS, SCOPES, SCRIPT_ID, CLIENT_ID } from '../services/google';
 
 function* initGoogleClientSaga(action) {
-
-  const clientId = yield select(state => state.clientId)
 
   try {
     yield call(gapi.loadAsync);
     yield call(
       gapi.client.init, {
         discoveryDocs: DISCOVERY_DOCS,
-        clientId,
+        clientId: CLIENT_ID,
         scope: SCOPES
       }
     );
@@ -57,13 +55,11 @@ function* logoutSaga(action) {
 }
 
 function* fetchLatestForms(action) {
-  const scriptId = yield select(state => state.scriptId)
-
   try {
     const response = yield call(gapi.client.script.scripts.run, {
-      scriptId,
+      scriptId: SCRIPT_ID,
       'resource': {
-        'function': 'getLastResponsesUrl'
+        'function': 'getTheodoForms'
       }
     });
     if (response.result.error) {
