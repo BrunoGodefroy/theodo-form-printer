@@ -73,9 +73,9 @@ export const fetchFormsRequest = () => ({
   type: types.FETCH_FORMS.REQUEST,
 });
 
-export const fetchFormsSuccess = forms => ({
+export const fetchFormsSuccess = payload => ({
   type: types.FETCH_FORMS.SUCCESS,
-  forms,
+  payload,
 });
 
 export const fetchFormsFailure = error => ({

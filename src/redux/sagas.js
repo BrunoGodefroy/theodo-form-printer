@@ -3,6 +3,7 @@ import { call, put, takeEvery, select } from 'redux-saga/effects';
 
 import {
   types,
+  companies,
   googleClientInitRequest,
   googleClientInitSuccess,
   googleClientInitFailure,
@@ -15,18 +16,16 @@ import {
   fetchFormsFailure,
 } from './actions';
 
-import gapi, { DISCOVERY_DOCS, SCOPES } from '../services/google';
+import gapi, { DISCOVERY_DOCS, SCOPES, SCRIPT_ID, CLIENT_ID } from '../services/google';
 
 function* initGoogleClientSaga(action) {
-
-  const clientId = yield select(state => state.clientId)
 
   try {
     yield call(gapi.loadAsync);
     yield call(
       gapi.client.init, {
         discoveryDocs: DISCOVERY_DOCS,
-        clientId,
+        clientId: CLIENT_ID,
         scope: SCOPES
       }
     );
@@ -57,13 +56,26 @@ function* logoutSaga(action) {
 }
 
 function* fetchLatestForms(action) {
-  const scriptId = yield select(state => state.scriptId)
+
+  const company = yield select(state => state.selectedCompany)
+  var getFormFunctionName
+  switch(company) {
+    case companies.THEODO_FR:
+      getFormFunctionName = 'getTheodoForms'
+      break;
+    case companies.THEODO_UK:
+      getFormFunctionName = 'getTheodoUKForms'
+      break;
+    case companies.FASTIT:
+      getFormFunctionName = 'getFastITForms'
+      break;
+  }
 
   try {
     const response = yield call(gapi.client.script.scripts.run, {
-      scriptId,
+      scriptId: SCRIPT_ID,
       'resource': {
-        'function': 'getLastResponsesUrl'
+        'function': getFormFunctionName
       }
     });
     if (response.result.error) {

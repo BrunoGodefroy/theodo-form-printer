@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   error: false,
   forms: [],
+  questions: [],
   isCompanyChosen: false,
   selectedCompany: '',
   isClientLoaded: false,
@@ -63,7 +64,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        forms: action.forms,
+        forms: action.payload.responses,
+        questions: action.payload.questions,
         error: false,
       };
     case types.LOGIN.FAILURE:
@@ -77,12 +79,10 @@ export default function reducer(state = initialState, action = {}) {
         errorMessage: action.error,
       };
     case types.COMPANY_SELECTED:
-      const ids = gapi.selectCompany(action.company)
       return {
         ...state,
         isCompanyChosen: true,
         selectedCompany: action.company,
-        ...ids
       }
     default:
       return state;
