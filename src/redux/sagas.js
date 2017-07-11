@@ -16,7 +16,7 @@ import {
   fetchFormsFailure,
 } from './actions';
 
-import gapi, { DISCOVERY_DOCS, SCOPES, SCRIPT_ID, CLIENT_ID } from '../services/google';
+import gapi, { DISCOVERY_DOCS, SCOPES, SCRIPT_ID, CLIENT_ID, FORM_ID_THEODO_FR, FORM_ID_THEODO_UK, FORM_ID_FASTIT } from '../services/google';
 
 function* initGoogleClientSaga(action) {
 
@@ -61,13 +61,13 @@ function* fetchLatestForms(action) {
   var formID
   switch(company) {
     case companies.THEODO_FR:
-      formID = '1bSME-FgoGtu9f7nIbVafynjffLJX5Q7sHS-kTlFk0m4'
+      formID = FORM_ID_THEODO_FR
       break;
     case companies.THEODO_UK:
-      formID = ''
+      formID = FORM_ID_THEODO_UK
       break;
     case companies.FASTIT:
-      formID = '1c87aJ-wfV4HGGUGn2lAUKat0vst_S4fWhDmy0oGTOyg'
+      formID = FORM_ID_FASTIT
       break;
   }
 

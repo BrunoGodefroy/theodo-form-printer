@@ -23,15 +23,15 @@ class ProjectForm extends PureComponent {
           switch(question.type) {
             case 'MULTIPLE_CHOICE':
               return (
-                <Segment vertical>
+                <Segment key={ `segment-${question.id}` } vertical>
                   <Header as="h3">{ question.label }</Header>
-                  { question.answers.map( answer => {
-                    return (<Form.Radio label={ answer } checked={ this.props.form[question.questionSlug] ===answer } />)
+                  { question.answers.map( (answer, index) => {
+                    return (<Form.Radio key={`${question.questionSlug}-${index}`} label={ answer } checked={ this.props.form[question.questionSlug] ===answer } />)
                   } ) }
                 </Segment>)
             default:
               return (
-                <Segment vertical>
+                <Segment key={ `segment-${question.id}` } vertical>
                   <Header as="h3">{ question.label }</Header>
                   { this.props.form[question.questionSlug].split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
                 </Segment>

@@ -10,8 +10,6 @@ const initialState = {
   selectedCompany: '',
   isClientLoaded: false,
   errorMessage: '',
-  scriptId: '',
-  clientId: '',
 }
 
 import gapi from '../services/google';

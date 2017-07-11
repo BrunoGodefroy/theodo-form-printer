@@ -6,12 +6,8 @@ import { companies } from '../../redux/actions';
 
 class ListForms extends PureComponent {
   render() {
-    const yesOfCourse = this.props.questions.reduce((yes ,question) => {
-      if (question.questionSlug === 'recommendation') {
-        yes = question.answers[0]
-      }
-      return yes
-    }, 'croute')
+    const recommendationQuestion = this.props.questions.find(question => question.questionSlug === 'recommendation')
+    const yesOfCourse = recommendationQuestion ? recommendationQuestion.answers[0] : ''
 
     const panels = this.props.forms.map(form =>{
 
