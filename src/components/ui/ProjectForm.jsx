@@ -29,13 +29,22 @@ class ProjectForm extends PureComponent {
                     return (<Form.Radio key={`${question.questionSlug}-${index}`} label={ answer } checked={ this.props.form[question.questionSlug] ===answer } />)
                   } ) }
                 </Segment>)
+            case 'CHECKBOX':
+                return (
+                  <Segment key={ `segment-${question.id}` } vertical>
+                    <Header as="h3">{ question.label }</Header>
+                    { this.props.form[question.questionSlug][0].split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
+                  </Segment>
+                )
             default:
-              return (
-                <Segment key={ `segment-${question.id}` } vertical>
-                  <Header as="h3">{ question.label }</Header>
-                  { this.props.form[question.questionSlug].split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
-                </Segment>
-              )
+              if(this.props.form[question.questionSlug]) {
+                return (
+                  <Segment key={ `segment-${question.id}` } vertical>
+                    <Header as="h3">{ question.label }</Header>
+                    { this.props.form[question.questionSlug].split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
+                  </Segment>
+                )
+              }
           }
         })
       }

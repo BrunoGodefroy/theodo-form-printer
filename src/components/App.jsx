@@ -17,6 +17,7 @@ class App extends PureComponent {
     this.selectTheodoUK = this.selectTheodoUK.bind(this);
     this.selectTheodoFR = this.selectTheodoFR.bind(this);
     this.selectFastIT = this.selectFastIT.bind(this);
+    this.selectBAM = this.selectBAM.bind(this);
   }
 
   handleUpdate(event) {
@@ -36,12 +37,17 @@ class App extends PureComponent {
     this.props.chooseCompany(companies.FASTIT)
   }
 
+  selectBAM() {
+    this.props.chooseCompany(companies.BAM)
+  }
+
   renderCompanyButtons() {
     if (!this.props.isCompanyChosen) {
       return <Container>
         <Button onClick={ this.selectTheodoUK } >Theodo UK</Button>
         <Button onClick={ this.selectTheodoFR } >Theodo FR</Button>
         <Button onClick={ this.selectFastIT } >FastIT</Button>
+        <Button onClick={ this.selectBAM } >BAM</Button>
       </Container>
     }
   }

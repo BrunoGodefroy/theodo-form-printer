@@ -9,7 +9,7 @@ class ListForms extends PureComponent {
     const recommendationQuestion = this.props.questions.find(question => question.questionSlug === 'recommendation')
     const yesOfCourse = recommendationQuestion ? recommendationQuestion.answers[0] : ''
 
-    const panels = this.props.forms.map(form =>{
+    const panels = this.props.forms.map((form, index) =>{
 
       let label;
 
@@ -27,7 +27,7 @@ class ListForms extends PureComponent {
       return {
         title: <span>{`${form.project} - Sprint ${form.sprint}`} {label}</span>,
         content: <ProjectForm form={ form } questions={ this.props.questions } company={ this.props.company } />,
-        key: `${form.project} - Sprint ${form.sprint}`,
+        key: `${form.project} - Sprint ${form.sprint} - ${index}`,
       }
     });
 

@@ -11,6 +11,7 @@ export const SCOPES = 'https://www.googleapis.com/auth/forms';
 export const FORM_ID_THEODO_FR = '1bSME-FgoGtu9f7nIbVafynjffLJX5Q7sHS-kTlFk0m4'
 export const FORM_ID_THEODO_UK = '17iAB-Mmp9BAhASR_7IZTaFGT7vrQzXUH7A2Wz8xwl88'
 export const FORM_ID_FASTIT = '1c87aJ-wfV4HGGUGn2lAUKat0vst_S4fWhDmy0oGTOyg'
+export const FORM_ID_BAM = '1oVWjK2woLw53yRa-2pkU2pJn9FRS3yiOOcRzgpWoFnQ'
 
 gapi.loadAsync = () => new Promise(
   (resolve, reject) => {
