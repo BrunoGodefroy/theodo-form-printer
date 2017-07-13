@@ -75,7 +75,7 @@ class App extends PureComponent {
 
   render() {
     return <Container text textAlign="center">
-      <Header className="no-print" as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
+      <Header className="no-print" as="h1" textAlign="center"> {this.props.selectedCompany} Project Form - Print Me</Header>
       { !this.props.isCompanyChosen ? this.renderCompanyButtons() : this.renderApp() }
     </Container>;
   }

@@ -23,8 +23,8 @@ export const types = {
 };
 
 export const companies = {
-  THEODO_UK: 'THEODO_UK',
-  THEODO_FR: 'THEODO_FR',
+  THEODO_UK: 'Theodo UK',
+  THEODO_FR: 'Theodo',
   FASTIT: 'FASTIT',
   BAM: 'BAM',
 }
