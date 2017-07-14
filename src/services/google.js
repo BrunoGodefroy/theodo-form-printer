@@ -2,15 +2,16 @@ const gapi = window.gapi
 
 import { companies } from '../redux/actions'
 
-export const CLIENT_ID_THEODO_FR = '14597778711-d4kt5ktli45oohinerhi2u3l4rolbaoe.apps.googleusercontent.com';
-export const CLIENT_ID_THEODO_UK = '932358196218-67c89d4v3v5tif0hf4ta2uvu3n365db8.apps.googleusercontent.com';
-export const CLIENT_ID_FASTIT = '390849018080-n6hvq5jg9hkl67l2fsi4ldeljs57o34r.apps.googleusercontent.com';
+export const CLIENT_ID = '1064483391468-34odtv7dj3tidc5mfbtkitf89bapl184.apps.googleusercontent.com';
+export const SCRIPT_ID = 'MUR7LYGtI9263SIUdj6IzcAW4mt_V9Ca2';
 
 export const DISCOVERY_DOCS = ["https://script.googleapis.com/$discovery/rest?version=v1"];
 export const SCOPES = 'https://www.googleapis.com/auth/forms';
-export const SCRIPT_ID_THEODO_FR = 'MopOUf2aDvG7Y1O3Ltt_E_RT6drthxiAf';
-export const SCRIPT_ID_THEODO_UK = 'MeRye5A_wHzCuyYvIJ85WNJ6eS0vCcuvm';
-export const SCRIPT_ID_FASTIT = 'Mo36SB4NMSPPn9MLWxomXTQW4mt_V9Ca2';
+
+export const FORM_ID_THEODO_FR = '1bSME-FgoGtu9f7nIbVafynjffLJX5Q7sHS-kTlFk0m4'
+export const FORM_ID_THEODO_UK = '17iAB-Mmp9BAhASR_7IZTaFGT7vrQzXUH7A2Wz8xwl88'
+export const FORM_ID_FASTIT = '1c87aJ-wfV4HGGUGn2lAUKat0vst_S4fWhDmy0oGTOyg'
+export const FORM_ID_BAM = '1oVWjK2woLw53yRa-2pkU2pJn9FRS3yiOOcRzgpWoFnQ'
 
 gapi.loadAsync = () => new Promise(
   (resolve, reject) => {
@@ -30,29 +31,5 @@ gapi.logoutAsync = () => new Promise(
   }
 );
 
-gapi.selectCompany = (company) => {
-  switch (company) {
-    case companies.THEODO_FR:
-      return{
-        clientId: CLIENT_ID_THEODO_FR,
-        scriptId: SCRIPT_ID_THEODO_FR,
-      }
-    case companies.THEODO_UK:
-      return{
-        clientId: CLIENT_ID_THEODO_UK,
-        scriptId: SCRIPT_ID_THEODO_UK,
-      }
-    case companies.FASTIT:
-      return{
-        clientId: CLIENT_ID_FASTIT,
-        scriptId: SCRIPT_ID_FASTIT,
-      }
-    default:
-      return{
-        clientId: '',
-        scriptId: '',
-      }
-  }
-}
 
 export default gapi;

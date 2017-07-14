@@ -17,6 +17,7 @@ class App extends PureComponent {
     this.selectTheodoUK = this.selectTheodoUK.bind(this);
     this.selectTheodoFR = this.selectTheodoFR.bind(this);
     this.selectFastIT = this.selectFastIT.bind(this);
+    this.selectBAM = this.selectBAM.bind(this);
   }
 
   handleUpdate(event) {
@@ -36,12 +37,17 @@ class App extends PureComponent {
     this.props.chooseCompany(companies.FASTIT)
   }
 
+  selectBAM() {
+    this.props.chooseCompany(companies.BAM)
+  }
+
   renderCompanyButtons() {
     if (!this.props.isCompanyChosen) {
       return <Container>
         <Button onClick={ this.selectTheodoUK } >Theodo UK</Button>
         <Button onClick={ this.selectTheodoFR } >Theodo FR</Button>
         <Button onClick={ this.selectFastIT } >FastIT</Button>
+        <Button onClick={ this.selectBAM } >BAM</Button>
       </Container>
     }
   }
@@ -62,14 +68,14 @@ class App extends PureComponent {
           <Loader inverted>Loading</Loader>
         </Dimmer>
         <Header as="h2" className="no-print">The latest project forms</Header>
-        <ListForms forms={ this.props.forms } company={ this.props.selectedCompany } />
+        <ListForms forms={ this.props.forms} questions={ this.props.questions } company={ this.props.selectedCompany } />
       </Container>
     </Container>
   }
 
   render() {
     return <Container text textAlign="center">
-      <Header className="no-print" as="h1" textAlign="center">Theodo Project Form - Print Me</Header>
+      <Header className="no-print" as="h1" textAlign="center"> {this.props.selectedCompany} Project Form - Print Me</Header>
       { !this.props.isCompanyChosen ? this.renderCompanyButtons() : this.renderApp() }
     </Container>;
   }
@@ -80,6 +86,7 @@ App.propTypes = {
   errorMessage: PropTypes.string.isRequired,
   isClientLoaded: PropTypes.bool.isRequired,
   forms: PropTypes.array.isRequired,
+  questions: PropTypes.array.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   fetchFormsRequest: PropTypes.func.isRequired,
@@ -87,11 +94,12 @@ App.propTypes = {
   isCompanyChosen: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = ({ loggedIn, loading, forms, isClientLoaded, error, errorMessage, isCompanyChosen, selectedCompany }) => ({
+const mapStateToProps = ({ loggedIn, loading, forms, questions, isClientLoaded, error, errorMessage, isCompanyChosen, selectedCompany }) => ({
   error,
   errorMessage,
   isClientLoaded,
   forms,
+  questions,
   loggedIn,
   loading,
   isCompanyChosen,
