@@ -23,9 +23,10 @@ export const types = {
 };
 
 export const companies = {
-  THEODO_UK: 'THEODO_UK',
-  THEODO_FR: 'THEODO_FR',
+  THEODO_UK: 'Theodo UK',
+  THEODO_FR: 'Theodo',
   FASTIT: 'FASTIT',
+  BAM: 'BAM',
 }
 
 export const googleClientInitRequest = (company) => ({
@@ -73,9 +74,9 @@ export const fetchFormsRequest = () => ({
   type: types.FETCH_FORMS.REQUEST,
 });
 
-export const fetchFormsSuccess = forms => ({
+export const fetchFormsSuccess = payload => ({
   type: types.FETCH_FORMS.SUCCESS,
-  forms,
+  payload,
 });
 
 export const fetchFormsFailure = error => ({
