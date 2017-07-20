@@ -53,14 +53,39 @@ function handleForm(form, isBAM) {
       }
     })
   }
+  formSet = getSatisfation(formSet, yesOfCourse)
+  Logger.log(formSet)
   return {
     responses: formSet,
     questions: questions
   }
 }
 
-function getBAMforms(){
-  getForms('1oVWjK2woLw53yRa-2pkU2pJn9FRS3yiOOcRzgpWoFnQ')
+function getSatisfation(formSet, yesOfCourse) {
+  Logger.log(yesOfCourse)
+  var speed = 0
+  var colaboration = 0
+  var satisfaction = ''
+  formSet.forEach(function(set) {
+    speed = parseInt(set['speed'].charAt(0))
+    colaboration = parseInt(set['colaboration'].charAt(0))
+    
+    if(speed + colaboration >= 8) {
+      if (set['recommendation'] == yesOfCourse) {
+        satisfaction = 'Waouh'
+      } else {
+        satisfaction = 'OK'
+      }
+    } else {
+      satisfaction = 'KO'
+    }
+    set['satisfaction'] = satisfaction
+    Logger.log(satisfaction)
+    satisfaction = ''
+    speed = 0
+    colaboration = 0
+  })
+  return formSet
 }
 
 function getForms(formId) {
