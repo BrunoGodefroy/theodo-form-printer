@@ -24,8 +24,9 @@ class ListForms extends PureComponent {
         label = <Label color="red" className="pinned">Red bucket</Label>;
       }
 
+      var formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint}` : `${form.project}`
       return {
-        title: <span>{`${form.project} - Sprint ${form.sprint}`} {label}</span>,
+        title: <span>{formTitle} {label}</span>,
         content: <ProjectForm form={ form } questions={ this.props.questions } company={ this.props.company } />,
         key: `${form.project} - Sprint ${form.sprint} - ${index}`,
       }
