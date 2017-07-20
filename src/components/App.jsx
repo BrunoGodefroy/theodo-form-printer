@@ -68,9 +68,9 @@ class App extends PureComponent {
           <Loader inverted>Loading</Loader>
         </Dimmer>
           <Header as="h2" className="no-print">The latest project forms</Header>
-          <Label color="green" >WOW! {this.props.numberOfWahou} / {this.props.forms.length}</Label>
-          <Label color="olive" >Success! {this.props.numberOfOK} / {this.props.forms.length}</Label>
-          <Label color="red" >Red Bucket! {this.props.numberOfKO} / {this.props.forms.length}</Label>
+          <Label color="green" >WOW: {this.props.numberOfWahou} / {this.props.forms.length} - {Math.round(this.props.numberOfWahou*100/this.props.forms.length)}%</Label>
+          <Label color="olive" >Success: {this.props.numberOfOK} / {this.props.forms.length} - {Math.round(this.props.numberOfOK*100/this.props.forms.length)}%</Label>
+          <Label color="red" >Red Bucket: {this.props.numberOfKO} / {this.props.forms.length} - {Math.round(this.props.numberOfKO*100/this.props.forms.length)}%</Label>
       </Container>
       <Container style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }} textAlign="left">
         <ListForms forms={ this.props.forms} questions={ this.props.questions } company={ this.props.selectedCompany } />
