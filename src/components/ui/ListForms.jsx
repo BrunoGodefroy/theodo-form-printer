@@ -12,16 +12,18 @@ class ListForms extends PureComponent {
     const panels = this.props.forms.map((form, index) =>{
 
       let label;
-
-      if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) >= 8 && form.recommendation === yesOfCourse) {
-        if (parseInt(form.speed[0]) + parseInt(form.colaboration[0]) == 10){
+      switch (form.satisfaction) {
+        case 'Waouh':
           label = <Label color="green" className="pinned">WOW!</Label>;
-        } else {
+          break;
+        case 'OK':
           label = <Label color="olive" className="pinned">Success</Label>;
-        }
-      }
-      else {
-        label = <Label color="red" className="pinned">Red bucket</Label>;
+          break;
+        case 'KO':
+          label = <Label color="red" className="pinned">Red bucket</Label>;
+          break;
+        default:
+          label = <Label color="pink" className="pinned">error</Label>;
       }
 
       var formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint}` : `${form.project}`
