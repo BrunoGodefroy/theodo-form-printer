@@ -63,9 +63,9 @@ export default function reducer(state = initialState, action = {}) {
       };
     case types.FETCH_FORMS.SUCCESS:
       const forms = action.payload.responses
-      var numberOfWahou = 0
-      var numberOfOK = 0
-      var numberOfKO = 0
+      let numberOfWahou = 0
+      let numberOfOK = 0
+      let numberOfKO = 0
       forms.forEach(form => {
         if(form['satisfaction'] == 'Waouh') {
           numberOfWahou += 1
