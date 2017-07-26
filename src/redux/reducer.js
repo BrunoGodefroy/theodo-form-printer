@@ -10,6 +10,9 @@ const initialState = {
   selectedCompany: '',
   isClientLoaded: false,
   errorMessage: '',
+  numberOfWahou: 0,
+  numberOfOK: 0,
+  numberOfKO: 0,
 }
 
 import gapi from '../services/google';
@@ -59,12 +62,31 @@ export default function reducer(state = initialState, action = {}) {
         loading: true,
       };
     case types.FETCH_FORMS.SUCCESS:
+      const forms = action.payload.responses
+      let numberOfWahou = 0
+      let numberOfOK = 0
+      let numberOfKO = 0
+      forms.forEach(form => {
+        if(form['satisfaction'] == 'Waouh') {
+          numberOfWahou += 1
+        }
+        if(form['satisfaction'] == 'OK') {
+          numberOfOK += 1
+        }
+        if(form['satisfaction'] == 'KO') {
+          numberOfKO += 1
+        }
+
+      })
       return {
         ...state,
         loading: false,
-        forms: action.payload.responses,
+        forms,
         questions: action.payload.questions,
         error: false,
+        numberOfKO,
+        numberOfOK,
+        numberOfWahou,
       };
     case types.LOGIN.FAILURE:
     case types.GOOGLE_CLIENT_INIT.FAILURE:

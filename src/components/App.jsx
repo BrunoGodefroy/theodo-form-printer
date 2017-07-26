@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, Header, Container, Loader, Dimmer } from 'semantic-ui-react';
+import { Button, Header, Container, Loader, Dimmer, Label } from 'semantic-ui-react';
 
 import { fetchFormsRequest, chooseCompany, companies } from '../redux/actions';
 import LoginButton from './LoginButton';
@@ -63,13 +63,20 @@ class App extends PureComponent {
         >
         Update project forms
       </Button> }
-      <Container textAlign="left">
+      <Container textAlign="center">
         <Dimmer className="no-print" active={ this.props.loading } inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
-        <Header as="h2" className="no-print">The latest project forms</Header>
-        <ListForms forms={ this.props.forms} questions={ this.props.questions } company={ this.props.selectedCompany } />
+          <Header as="h2" className="no-print">The latest project forms</Header>
       </Container>
+        <ListForms
+          forms={ this.props.forms}
+          questions={ this.props.questions }
+          company={ this.props.selectedCompany }
+          numberOfWahou = {this.props.numberOfWahou}
+          numberOfOK = {this.props.numberOfOK}
+          numberOfKO = {this.props.numberOfKO}
+        />
     </Container>
   }
 
@@ -92,9 +99,25 @@ App.propTypes = {
   fetchFormsRequest: PropTypes.func.isRequired,
   chooseCompany: PropTypes.func.isRequired,
   isCompanyChosen: PropTypes.bool.isRequired,
+  numberOfWahou: PropTypes.number.isRequired,
+  numberOfOK: PropTypes.number.isRequired,
+  numberOfKO: PropTypes.number.isRequired,
 }
 
-const mapStateToProps = ({ loggedIn, loading, forms, questions, isClientLoaded, error, errorMessage, isCompanyChosen, selectedCompany }) => ({
+const mapStateToProps = ({
+  loggedIn,
+  loading,
+  forms,
+  questions,
+  isClientLoaded,
+  error,
+  errorMessage,
+  isCompanyChosen,
+  selectedCompany,
+  numberOfWahou,
+  numberOfOK,
+  numberOfKO,
+}) => ({
   error,
   errorMessage,
   isClientLoaded,
@@ -104,6 +127,9 @@ const mapStateToProps = ({ loggedIn, loading, forms, questions, isClientLoaded, 
   loading,
   isCompanyChosen,
   selectedCompany,
+  numberOfWahou,
+  numberOfOK,
+  numberOfKO,
 });
 
 const mapDispatchToProps = {
