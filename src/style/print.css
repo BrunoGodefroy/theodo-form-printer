@@ -44,7 +44,7 @@
 }
 
 .ui.accordion .active.title::before {
-    content: "Theodo Project Form - ";
+  content: "Theodo Project Form - ";
 }
 
 .ui.vertical.segment {

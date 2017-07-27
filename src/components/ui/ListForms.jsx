@@ -36,13 +36,15 @@ class ListForms extends PureComponent {
 
     if (this.props.forms.length > 0) {
       return (
-        <Container style={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
-          <Container textAlign="center" className="no-print">
-            <Label color="green" >WOW: {this.props.numberOfWahou} / {this.props.forms.length} - {Math.round(this.props.numberOfWahou*100/this.props.forms.length)}%</Label>
-            <Label color="olive" >Success: {this.props.numberOfOK} / {this.props.forms.length} - {Math.round(this.props.numberOfOK*100/this.props.forms.length)}%</Label>
-            <Label color="red" >Red Bucket: {this.props.numberOfKO} / {this.props.forms.length} - {Math.round(this.props.numberOfKO*100/this.props.forms.length)}%</Label>
+        <Container>
+          <Container  style={{ margin: '10px', display: 'flex', flexDirection: 'column' }} className="no-print">
+            <Container textAlign="center">
+              <Label color="green" >WOW: {this.props.numberOfWahou} / {this.props.forms.length} - {Math.round(this.props.numberOfWahou*100/this.props.forms.length)}%</Label>
+              <Label color="olive" >Success: {this.props.numberOfOK} / {this.props.forms.length} - {Math.round(this.props.numberOfOK*100/this.props.forms.length)}%</Label>
+              <Label color="red" >Red Bucket: {this.props.numberOfKO} / {this.props.forms.length} - {Math.round(this.props.numberOfKO*100/this.props.forms.length)}%</Label>
+            </Container>
           </Container>
-          <Container style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }} textAlign="left">
+          <Container style={{ display: 'flex', justifyContent: 'center' }} textAlign="left">
             <Accordion panels={ panels } styled />
           </Container>
         </Container>
