@@ -38,7 +38,7 @@ class ProjectForm extends PureComponent {
                   </Segment>
                 )
             default:
-              if(this.props.form[question.questionSlug]) {
+              if(this.props.form[question.questionSlug] && !(['sprint', 'project'].includes(question.questionSlug))) {
                 return (
                   <Segment key={ `segment-${question.id}` } vertical>
                     <Header as="h3">{ question.label }</Header>
