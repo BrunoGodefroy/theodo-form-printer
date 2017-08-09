@@ -43,10 +43,6 @@
   border: 0;
 }
 
-.ui.accordion .active.title::before {
-  content: "Theodo Project Form - ";
-}
-
 .ui.vertical.segment {
   position: static;
 }
