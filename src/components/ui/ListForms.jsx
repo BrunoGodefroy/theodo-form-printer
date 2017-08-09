@@ -36,7 +36,7 @@ class ListForms extends PureComponent {
 
     if (this.props.forms.length > 0) {
       return (
-        <Container>
+        <Container className={ 'company-' + this.props.company } >
           <Container  style={{ margin: '10px', display: 'flex', flexDirection: 'column' }} className="no-print">
             <Container textAlign="center">
               <Label color="green" >WOW: {this.props.numberOfWahou} / {this.props.forms.length} - {Math.round(this.props.numberOfWahou*100/this.props.forms.length)}%</Label>
