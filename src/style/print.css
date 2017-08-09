@@ -43,8 +43,20 @@
   border: 0;
 }
 
-.ui.accordion .active.title::before {
+.company-Theodo .ui.accordion .active.title::before {
+  content: "Questionnaire Theodo - ";
+}
+
+.company-BAM .ui.accordion .active.title::before {
+  content: "Questionnaire BAM - ";
+}
+
+.company-Theodo.UK .ui.accordion .active.title::before {
   content: "Theodo Project Form - ";
+}
+
+.company-FASTIT .ui.accordion .active.title::before {
+  content: "Questionnaire Fast IT - ";
 }
 
 .ui.vertical.segment {
