@@ -14,11 +14,7 @@ class App extends PureComponent {
   constructor(props) {
     super(props)
     this.handleUpdate = this.handleUpdate.bind(this)
-    this.selectTheodoUK = this.selectTheodoUK.bind(this)
-    this.selectTheodoFR = this.selectTheodoFR.bind(this)
-    this.selectFastIT = this.selectFastIT.bind(this)
-    this.selectBAM = this.selectBAM.bind(this)
-    this.selectSicara = this.selectSicara.bind(this)
+    this.selectCompany = this.selectCompany.bind(this)
   }
 
   handleUpdate(event) {
@@ -26,34 +22,18 @@ class App extends PureComponent {
     this.props.fetchFormsRequest()
   }
 
-  selectTheodoUK() {
-    this.props.chooseCompany(companies.THEODO_UK)
-  }
-
-  selectTheodoFR() {
-    this.props.chooseCompany(companies.THEODO_FR)
-  }
-
-  selectFastIT() {
-    this.props.chooseCompany(companies.FASTIT)
-  }
-
-  selectBAM() {
-    this.props.chooseCompany(companies.BAM)
-  }
-
-  selectSicara() {
-    this.props.chooseCompany(companies.SICARA)
+  selectCompany(company) {
+    return () => this.props.chooseCompany(company)
   }
 
   renderCompanyButtons() {
     if (!this.props.isCompanyChosen) {
       return <Container>
-        <Button onClick={ this.selectTheodoUK } >Theodo UK</Button>
-        <Button onClick={ this.selectTheodoFR } >Theodo FR</Button>
-        <Button onClick={ this.selectFastIT } >FastIT</Button>
-        <Button onClick={ this.selectBAM } >BAM</Button>
-        <Button onClick={ this.selectSicara } >Sicara</Button>
+        <Button onClick={ this.selectCompany(companies.THEODO_UK) } >Theodo UK</Button>
+        <Button onClick={ this.selectCompany(companies.THEODO_FR) } >Theodo FR</Button>
+        <Button onClick={ this.selectCompany(companies.FASTIT) } >FastIT</Button>
+        <Button onClick={ this.selectCompany(companies.BAM) } >BAM</Button>
+        <Button onClick={ this.selectCompany(companies.SICARA) } >Sicara</Button>
       </Container>
     }
   }
