@@ -27,6 +27,7 @@ export const companies = {
   THEODO_FR: 'Theodo',
   FASTIT: 'FASTIT',
   BAM: 'BAM',
+  SICARA: 'Sicara',
 }
 
 export const googleClientInitRequest = (company) => ({

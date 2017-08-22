@@ -1,28 +1,29 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Button, Header, Container, Loader, Dimmer, Label } from 'semantic-ui-react';
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Button, Header, Container, Loader, Dimmer, Label } from 'semantic-ui-react'
 
-import { fetchFormsRequest, chooseCompany, companies } from '../redux/actions';
-import LoginButton from './LoginButton';
+import { fetchFormsRequest, chooseCompany, companies } from '../redux/actions'
+import LoginButton from './LoginButton'
 import {
   Error,
   ListForms,
-} from './ui';
+} from './ui'
 
 class App extends PureComponent {
   constructor(props) {
-    super(props);
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.selectTheodoUK = this.selectTheodoUK.bind(this);
-    this.selectTheodoFR = this.selectTheodoFR.bind(this);
-    this.selectFastIT = this.selectFastIT.bind(this);
-    this.selectBAM = this.selectBAM.bind(this);
+    super(props)
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.selectTheodoUK = this.selectTheodoUK.bind(this)
+    this.selectTheodoFR = this.selectTheodoFR.bind(this)
+    this.selectFastIT = this.selectFastIT.bind(this)
+    this.selectBAM = this.selectBAM.bind(this)
+    this.selectSicara = this.selectSicara.bind(this)
   }
 
   handleUpdate(event) {
-    event.preventDefault();
-    this.props.fetchFormsRequest();
+    event.preventDefault()
+    this.props.fetchFormsRequest()
   }
 
   selectTheodoUK() {
@@ -41,6 +42,10 @@ class App extends PureComponent {
     this.props.chooseCompany(companies.BAM)
   }
 
+  selectSicara() {
+    this.props.chooseCompany(companies.SICARA)
+  }
+
   renderCompanyButtons() {
     if (!this.props.isCompanyChosen) {
       return <Container>
@@ -48,6 +53,7 @@ class App extends PureComponent {
         <Button onClick={ this.selectTheodoFR } >Theodo FR</Button>
         <Button onClick={ this.selectFastIT } >FastIT</Button>
         <Button onClick={ this.selectBAM } >BAM</Button>
+        <Button onClick={ this.selectSicara } >Sicara</Button>
       </Container>
     }
   }
@@ -84,7 +90,7 @@ class App extends PureComponent {
     return <Container text textAlign="center">
       <Header className="no-print" as="h1" textAlign="center"> {this.props.selectedCompany} Project Form - Print Me</Header>
       { !this.props.isCompanyChosen ? this.renderCompanyButtons() : this.renderApp() }
-    </Container>;
+    </Container>
   }
 }
 
@@ -130,12 +136,12 @@ const mapStateToProps = ({
   numberOfWahou,
   numberOfOK,
   numberOfKO,
-});
+})
 
 const mapDispatchToProps = {
   fetchFormsRequest,
   chooseCompany,
-};
+}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
