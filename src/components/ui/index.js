@@ -1,11 +1,9 @@
-import Error from './Error.jsx';
-import ProjectForm from './ProjectForm.jsx';
-import ListForms from './ListForms.jsx';
-import Loader from './Loader.jsx';
+import Error from './Error.jsx'
+import ProjectForm from './ProjectForm.jsx'
+import ListForms from './ListForms.jsx'
 
 module.exports = {
   Error,
   ProjectForm,
-  ListForms,
-  Loader,
+  ListForms
 }

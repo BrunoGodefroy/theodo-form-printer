@@ -1,31 +1,31 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const ROOT_PATH = path.resolve(__dirname)
 
-module.exports = function(env) {
+module.exports = function (env) {
   let plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './index_template.html',
-      alwaysWriteToDisk: true,
+      alwaysWriteToDisk: true
     }),
-    new HtmlWebpackHarddiskPlugin(),
-  ];
+    new HtmlWebpackHarddiskPlugin()
+  ]
 
   if (env && env.production) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       minimize: true,
       comments: false,
-      sourceMap: true,
-    }));
+      sourceMap: true
+    }))
     plugins.push(new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
-    }));
+    }))
   }
 
   return {
@@ -33,7 +33,7 @@ module.exports = function(env) {
     output: {
       path: path.resolve(ROOT_PATH, './'),
       publicPath: '',
-      filename: 'bundle.[hash].js',
+      filename: 'bundle.[hash].js'
     },
     module: {
       rules: [
@@ -45,7 +45,7 @@ module.exports = function(env) {
           test: /\.jsx?$/,
           use: ['react-hot-loader', 'babel-loader'],
           exclude: /node_modules/
-        },
+        }
       ]
     },
     resolve: {
@@ -56,8 +56,8 @@ module.exports = function(env) {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      port: 8000,
+      port: 8000
     },
-    plugins: plugins,
-  };
-};
+    plugins: plugins
+  }
+}
