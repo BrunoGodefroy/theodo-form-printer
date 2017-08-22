@@ -53,22 +53,22 @@ class App extends PureComponent {
         <Dimmer className="no-print" active={ this.props.loading } inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
-          <Header as="h2" className="no-print">The latest project forms</Header>
+        <Header as="h2" className="no-print">The latest project forms</Header>
       </Container>
-        <ListForms
-          forms={ this.props.forms}
-          questions={ this.props.questions }
-          company={ this.props.selectedCompany }
-          numberOfWahou = {this.props.numberOfWahou}
-          numberOfOK = {this.props.numberOfOK}
-          numberOfKO = {this.props.numberOfKO}
-        />
+      <ListForms
+        forms={ this.props.forms}
+        questions={ this.props.questions }
+        company={ this.props.selectedCompany }
+        numberOfWahou = {this.props.numberOfWahou}
+        numberOfOK = {this.props.numberOfOK}
+        numberOfKO = {this.props.numberOfKO}
+      />
     </Container>
   }
 
   render() {
     return <Container text textAlign="center">
-      <Header className="no-print" as="h1" textAlign="center"> {this.props.selectedCompany} Project Form - Print Me</Header>
+      <Header className="no-print" as="h1" textAlign="center"> { this.props.selectedCompany.name } Project Form - Print Me</Header>
       { !this.props.isCompanyChosen ? this.renderCompanyButtons() : this.renderApp() }
     </Container>
   }
@@ -88,6 +88,7 @@ App.propTypes = {
   numberOfWahou: PropTypes.number.isRequired,
   numberOfOK: PropTypes.number.isRequired,
   numberOfKO: PropTypes.number.isRequired,
+  selectedCompany: PropTypes.object,
 }
 
 const mapStateToProps = ({

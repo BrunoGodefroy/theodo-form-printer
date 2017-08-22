@@ -21,11 +21,6 @@ import gapi, {
   SCOPES,
   SCRIPT_ID,
   CLIENT_ID,
-  FORM_ID_THEODO_FR,
-  FORM_ID_THEODO_UK,
-  FORM_ID_FASTIT,
-  FORM_ID_BAM,
-  FORM_ID_SICARA,
 } from '../services/google'
 
 function* initGoogleClientSaga(action) {
@@ -68,31 +63,13 @@ function* logoutSaga(action) {
 function* fetchLatestForms(action) {
 
   const company = yield select(state => state.selectedCompany)
-  let formID
-  switch(company) {
-    case companies.THEODO_FR:
-      formID = FORM_ID_THEODO_FR
-      break
-    case companies.THEODO_UK:
-      formID = FORM_ID_THEODO_UK
-      break
-    case companies.FASTIT:
-      formID = FORM_ID_FASTIT
-      break
-    case companies.BAM:
-      formID = FORM_ID_BAM
-      break
-    case companies.SICARA:
-      formID = FORM_ID_SICARA
-      break
-  }
 
   try {
     const response = yield call(gapi.client.script.scripts.run, {
       scriptId: SCRIPT_ID,
       'resource': {
         'function': 'getForms',
-        'parameters': [ formID ]
+        'parameters': [ company.formId ]
       }
     })
 

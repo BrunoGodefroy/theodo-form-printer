@@ -29,14 +29,14 @@ class ListForms extends PureComponent {
       const formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint}` : `${form.project}`
       return {
         title: <span>{formTitle} {label}</span>,
-        content: <ProjectForm form={ form } questions={ this.props.questions } company={ this.props.company } />,
+        content: <ProjectForm form={ form } questions={ this.props.questions } company={ this.props.company.name } />,
         key: `${form.project} - Sprint ${form.sprint} - ${index}`,
       }
     });
 
     if (this.props.forms.length > 0) {
       return (
-        <Container className={ 'company-' + this.props.company } >
+        <Container className={ 'company-' + this.props.company.name } >
           <Container  style={{ margin: '10px', display: 'flex', flexDirection: 'column' }} className="no-print">
             <Container textAlign="center">
               <Label color="green" >WOW: {this.props.numberOfWahou} / {this.props.forms.length} - {Math.round(this.props.numberOfWahou*100/this.props.forms.length)}%</Label>
@@ -58,7 +58,7 @@ class ListForms extends PureComponent {
 ListForms.propTypes = {
   forms: PropTypes.array.isRequired,
   questions: PropTypes.array.isRequired,
-  company: PropTypes.string.isRequired,
+  company: PropTypes.object.isRequired,
   numberOfWahou: PropTypes.number.isRequired,
   numberOfOK: PropTypes.number.isRequired,
   numberOfKO: PropTypes.number.isRequired,

@@ -7,7 +7,7 @@ const initialState = {
   forms: [],
   questions: [],
   isCompanyChosen: false,
-  selectedCompany: '',
+  selectedCompany: { name: '', scriptId: '' },
   isClientLoaded: false,
   errorMessage: '',
   numberOfWahou: 0,

@@ -23,14 +23,14 @@ export const types = {
 };
 
 export const companies = {
-  THEODO_UK: 'Theodo UK',
-  THEODO_FR: 'Theodo',
-  FASTIT: 'FASTIT',
-  BAM: 'BAM',
-  SICARA: 'Sicara',
+  THEODO_UK: { name: 'Theodo UK', formId: '17iAB-Mmp9BAhASR_7IZTaFGT7vrQzXUH7A2Wz8xwl88' },
+  THEODO_FR: { name: 'Theodo', formId: '1bSME-FgoGtu9f7nIbVafynjffLJX5Q7sHS-kTlFk0m4' },
+  FASTIT: { name: 'FASTIT', formId: '1c87aJ-wfV4HGGUGn2lAUKat0vst_S4fWhDmy0oGTOyg' },
+  BAM: { name: 'BAM', formId: '1oVWjK2woLw53yRa-2pkU2pJn9FRS3yiOOcRzgpWoFnQ' },
+  SICARA: { name: 'Sicara', formId: '1E1_AGNUzEMYvoFkA05D9fP5ko6t4vmEXX2DN6r8_yrw' },
 }
 
-export const googleClientInitRequest = (company) => ({
+export const googleClientInitRequest = company => ({
   type: types.GOOGLE_CLIENT_INIT.REQUEST,
   company,
 });
