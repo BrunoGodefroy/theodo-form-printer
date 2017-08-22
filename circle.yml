@@ -10,7 +10,7 @@ jobs:
          - checkout
 
          - restore_cache:
-            key:
+            keys:
                - cache-{{ .Branch }}-{{ checksum "package.json" }}
                - cache-{{ .Branch }}
                - cache-master-{{ checksum "package.json" }}
@@ -22,7 +22,7 @@ jobs:
 
          - run:
             name: Test
-            command: standard
+            command: yarn test
 
          - save_cache:
             key: cache-{{ .Branch }}-{{ checksum "package.json" }}
