@@ -8,9 +8,8 @@ import {
   SelectCompanyButtons,
   ListForms,
   UpdateFormsButton
-} from './logic'
-
-import { Error } from './ui'
+} from '@components/logic'
+import { Error } from '@components/ui'
 
 class App extends PureComponent {
   render () {

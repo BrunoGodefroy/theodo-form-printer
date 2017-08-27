@@ -13,14 +13,14 @@ import {
   fetchFormsSuccess,
   fetchFormsFailure,
   init
-} from './actions'
+} from '@redux/actions'
 
 import gapi, {
   DISCOVERY_DOCS,
   SCOPES,
   SCRIPT_ID,
   CLIENT_ID
-} from '../services/google'
+} from '@services/google'
 
 function * initGoogleClientSaga (action) {
   try {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Button } from 'semantic-ui-react'
 
-import { fetchFormsRequest } from '../../redux/actions'
+import { fetchFormsRequest } from '@redux/actions'
 
 class UpdateFormsButton extends PureComponent {
   constructor (props) {

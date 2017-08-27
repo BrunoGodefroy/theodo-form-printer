@@ -1,4 +1,4 @@
-import { types } from './actions'
+import { types } from '@redux//actions'
 
 const initialState = {
   loggedIn: false,

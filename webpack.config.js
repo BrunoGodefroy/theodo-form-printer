@@ -49,7 +49,14 @@ module.exports = function (env) {
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        '@components': path.resolve(ROOT_PATH, 'src/components'),
+        '@images': path.resolve(ROOT_PATH, 'src/images'),
+        '@redux': path.resolve(ROOT_PATH, 'src/redux'),
+        '@services': path.resolve(ROOT_PATH, 'src/services'),
+        '@style': path.resolve(ROOT_PATH, 'src/style')
+      }
     },
     devServer: {
       contentBase: path.resolve(ROOT_PATH, './'),
