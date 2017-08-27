@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Button } from 'semantic-ui-react'
 
-import { loginRequest, logoutRequest } from '../redux/actions'
+import { loginRequest, logoutRequest } from '@redux/actions'
 
 class LoginButton extends PureComponent {
   constructor (props) {
@@ -24,8 +24,8 @@ class LoginButton extends PureComponent {
 
   render () {
     return this.props.loggedIn
-      ? <Button className={this.props.className} onClick={this.handleLogout} disabled={this.props.loading}>Logout</Button>
-      : <Button className={this.props.className} onClick={this.handleLogin} disabled={this.props.loading}>Login</Button>
+      ? <Button className={this.props.className} onClick={this.handleLogout} content='Logout' icon='log out' />
+    : <Button className={this.props.className} onClick={this.handleLogin} content='Login' icon='sign in' />
   }
 }
 
