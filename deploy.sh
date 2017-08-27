@@ -14,6 +14,7 @@ then
     exit 1
 fi
 
+git pull
 rm bundle.*.js
 yarn build
 git add 'bundle.*.js'
