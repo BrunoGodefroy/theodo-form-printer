@@ -68,9 +68,6 @@ function * fetchLatestForms (action) {
       }
     })
 
-    if (response.result.error) {
-      yield put(fetchFormsFailure())
-    }
     yield put(fetchFormsSuccess(response.result.response.result))
   } catch (e) {
     yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
