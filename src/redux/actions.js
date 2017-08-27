@@ -19,7 +19,8 @@ export const types = {
     SUCCESS: 'FETCH_FORMS_SUCCESS',
     FAILURE: 'FETCH_FORMS_FAILURE'
   },
-  COMPANY_SELECTED: 'COMPANY_SELECTED'
+  COMPANY_SELECTED: 'COMPANY_SELECTED',
+  INIT: 'INIT_APPLICATION'
 }
 
 export const companies = {
@@ -30,9 +31,8 @@ export const companies = {
   SICARA: { name: 'Sicara', formId: '1E1_AGNUzEMYvoFkA05D9fP5ko6t4vmEXX2DN6r8_yrw' }
 }
 
-export const googleClientInitRequest = company => ({
-  type: types.GOOGLE_CLIENT_INIT.REQUEST,
-  company
+export const googleClientInitRequest = () => ({
+  type: types.GOOGLE_CLIENT_INIT.REQUEST
 })
 
 export const googleClientInitSuccess = isLoggedIn => ({
@@ -88,4 +88,8 @@ export const fetchFormsFailure = error => ({
 export const chooseCompany = (company) => ({
   type: types.COMPANY_SELECTED,
   company
+})
+
+export const init = () => ({
+  type: types.INIT
 })

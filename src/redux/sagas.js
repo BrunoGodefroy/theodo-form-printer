@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga'
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 
 import {
@@ -12,7 +11,8 @@ import {
   logoutFailure,
   fetchFormsRequest,
   fetchFormsSuccess,
-  fetchFormsFailure
+  fetchFormsFailure,
+  init
 } from './actions'
 
 import gapi, {
@@ -83,18 +83,18 @@ function * triggerFetchFormSaga (action) {
 }
 
 function * initApp (action) {
-  yield put(googleClientInitRequest(action.company))
+  yield put(googleClientInitRequest())
 }
 
 function * rootSaga () {
-  yield takeEvery(types.COMPANY_SELECTED, initApp)
+  yield takeEvery(types.INIT, initApp)
   yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga)
   yield takeEvery(types.LOGIN.REQUEST, loginSaga)
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga)
   yield takeEvery(types.FETCH_FORMS.REQUEST, fetchLatestForms)
-  yield takeEvery([types.LOGIN.SUCCESS, types.GOOGLE_CLIENT_INIT.SUCCESS], triggerFetchFormSaga)
+  yield takeEvery(types.COMPANY_SELECTED, triggerFetchFormSaga)
 
-  yield call(delay, 100)
+  yield put(init())
 }
 
 export default rootSaga
