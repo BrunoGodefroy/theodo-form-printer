@@ -15,6 +15,7 @@ then
 fi
 
 git pull
+git merge origin/master
 rm bundle.*.js
 yarn build
 git add 'bundle.*.js'
