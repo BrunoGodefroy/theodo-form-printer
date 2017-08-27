@@ -20,6 +20,7 @@ class ProjectForm extends PureComponent {
       </Button>
       { this.props.questions.map(question => {
         if (!question.questionSlug) return
+
         switch (question.type) {
           case 'MULTIPLE_CHOICE':
             return (

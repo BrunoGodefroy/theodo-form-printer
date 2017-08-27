@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga'
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 
 import {
@@ -12,15 +11,16 @@ import {
   logoutFailure,
   fetchFormsRequest,
   fetchFormsSuccess,
-  fetchFormsFailure
-} from './actions'
+  fetchFormsFailure,
+  init
+} from '@redux/actions'
 
 import gapi, {
   DISCOVERY_DOCS,
   SCOPES,
   SCRIPT_ID,
   CLIENT_ID
-} from '../services/google'
+} from '@services/google'
 
 function * initGoogleClientSaga (action) {
   try {
@@ -68,9 +68,6 @@ function * fetchLatestForms (action) {
       }
     })
 
-    if (response.result.error) {
-      yield put(fetchFormsFailure())
-    }
     yield put(fetchFormsSuccess(response.result.response.result))
   } catch (e) {
     yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
@@ -83,18 +80,18 @@ function * triggerFetchFormSaga (action) {
 }
 
 function * initApp (action) {
-  yield put(googleClientInitRequest(action.company))
+  yield put(googleClientInitRequest())
 }
 
 function * rootSaga () {
-  yield takeEvery(types.COMPANY_SELECTED, initApp)
+  yield takeEvery(types.INIT, initApp)
   yield takeEvery(types.GOOGLE_CLIENT_INIT.REQUEST, initGoogleClientSaga)
   yield takeEvery(types.LOGIN.REQUEST, loginSaga)
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga)
   yield takeEvery(types.FETCH_FORMS.REQUEST, fetchLatestForms)
-  yield takeEvery([types.LOGIN.SUCCESS, types.GOOGLE_CLIENT_INIT.SUCCESS], triggerFetchFormSaga)
+  yield takeEvery(types.COMPANY_SELECTED, triggerFetchFormSaga)
 
-  yield call(delay, 100)
+  yield put(init())
 }
 
 export default rootSaga

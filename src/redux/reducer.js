@@ -1,4 +1,4 @@
-import { types } from './actions'
+import { types } from '@redux//actions'
 
 const initialState = {
   loggedIn: false,
@@ -48,12 +48,7 @@ export default function reducer (state = initialState, action = {}) {
         loading: true
       }
     case types.LOGOUT.SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loggedIn: false,
-        error: false
-      }
+      return initialState
     case types.FETCH_FORMS.REQUEST:
       return {
         ...state,
