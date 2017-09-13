@@ -17,11 +17,31 @@ const initialState = {
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
+    case types.LOGIN.REQUEST:
     case types.GOOGLE_CLIENT_INIT.REQUEST:
+    case types.LOGOUT.REQUEST:
+    case types.FETCH_FORMS.REQUEST:
       return {
         ...state,
         loading: true
       }
+    case types.LOGIN.FAILURE:
+    case types.GOOGLE_CLIENT_INIT.FAILURE:
+    case types.LOGOUT.FAILURE:
+    case types.FETCH_FORMS.FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: action.error
+      }
+    case types.LOGIN.SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        error: false
+    }
     case types.GOOGLE_CLIENT_INIT.SUCCESS:
       return {
         ...state,
@@ -30,30 +50,8 @@ export default function reducer (state = initialState, action = {}) {
         isClientLoaded: true,
         error: false
       }
-    case types.LOGIN.REQUEST:
-      return {
-        ...state,
-        loading: true
-      }
-    case types.LOGIN.SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loggedIn: true,
-        error: false
-      }
-    case types.LOGOUT.REQUEST:
-      return {
-        ...state,
-        loading: true
-      }
     case types.LOGOUT.SUCCESS:
       return initialState
-    case types.FETCH_FORMS.REQUEST:
-      return {
-        ...state,
-        loading: true
-      }
     case types.FETCH_FORMS.SUCCESS:
       const forms = action.payload.responses
       let numberOfWahou = 0
@@ -79,16 +77,6 @@ export default function reducer (state = initialState, action = {}) {
         numberOfKO,
         numberOfOK,
         numberOfWahou
-      }
-    case types.LOGIN.FAILURE:
-    case types.GOOGLE_CLIENT_INIT.FAILURE:
-    case types.LOGOUT.FAILURE:
-    case types.FETCH_FORMS.FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        errorMessage: action.error
       }
     case types.COMPANY_SELECTED:
       return {
