@@ -9,8 +9,7 @@ import {
   logoutFailure,
   fetchFormsRequest,
   fetchFormsSuccess,
-  fetchFormsFailure,
-  init
+  fetchFormsFailure
 } from '@redux/actions'
 
 import reduxSagaFirebase from '@services/reduxSagaFirebase'

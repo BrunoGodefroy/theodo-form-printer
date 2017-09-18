@@ -14,16 +14,7 @@ export const types = {
     SUCCESS: 'FETCH_FORMS_SUCCESS',
     FAILURE: 'FETCH_FORMS_FAILURE'
   },
-  COMPANY_SELECTED: 'COMPANY_SELECTED',
-  INIT: 'INIT_APPLICATION'
-}
-
-export const companies = {
-  THEODO_UK: { name: 'Theodo UK', formId: '17iAB-Mmp9BAhASR_7IZTaFGT7vrQzXUH7A2Wz8xwl88' },
-  THEODO_FR: { name: 'Theodo', formId: '1bSME-FgoGtu9f7nIbVafynjffLJX5Q7sHS-kTlFk0m4' },
-  FASTIT: { name: 'FASTIT', formId: '1c87aJ-wfV4HGGUGn2lAUKat0vst_S4fWhDmy0oGTOyg' },
-  BAM: { name: 'BAM', formId: '1oVWjK2woLw53yRa-2pkU2pJn9FRS3yiOOcRzgpWoFnQ' },
-  SICARA: { name: 'Sicara', formId: '1E1_AGNUzEMYvoFkA05D9fP5ko6t4vmEXX2DN6r8_yrw' }
+  COMPANY_SELECTED: 'COMPANY_SELECTED'
 }
 
 export const loginRequest = () => ({
@@ -69,8 +60,4 @@ export const fetchFormsFailure = error => ({
 export const chooseCompany = (company) => ({
   type: types.COMPANY_SELECTED,
   company
-})
-
-export const init = () => ({
-  type: types.INIT
 })
