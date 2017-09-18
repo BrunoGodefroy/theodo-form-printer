@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Button, Container } from 'semantic-ui-react'
 
-import { chooseCompany, companies } from '@redux/actions'
+import { chooseCompany } from '@redux/actions'
+import { companies } from '@config'
 
 class SelectCompanyButtons extends PureComponent {
   constructor (props) {

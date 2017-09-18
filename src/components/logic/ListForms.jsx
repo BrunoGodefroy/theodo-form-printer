@@ -27,7 +27,7 @@ class ListForms extends PureComponent {
       const formTitle = form.sprint ? `${form.project} - Sprint ${form.sprint}` : `${form.project}`
       return {
         title: <span>{formTitle} {label}</span>,
-        content: <ProjectForm form={form} questions={this.props.questions} company={this.props.selectedCompany.name} />,
+        content: <ProjectForm form={form} company={this.props.selectedCompany.name} />,
         key: `${form.project} - Sprint ${form.sprint} - ${index}`
       }
     })
@@ -36,9 +36,9 @@ class ListForms extends PureComponent {
       return <Container className={`company-${this.props.selectedCompany.name}`} >
         <Container style={{ margin: '10px', display: 'flex', flexDirection: 'column' }} className='no-print'>
           <Container textAlign='center'>
-            <Label color='green' >WOW: {this.props.numberOfWahou} / {this.props.forms.length} - {Math.round(this.props.numberOfWahou * 100 / this.props.forms.length)}%</Label>
-            <Label color='olive' >Success: {this.props.numberOfOK} / {this.props.forms.length} - {Math.round(this.props.numberOfOK * 100 / this.props.forms.length)}%</Label>
-            <Label color='red' >Red Bucket: {this.props.numberOfKO} / {this.props.forms.length} - {Math.round(this.props.numberOfKO * 100 / this.props.forms.length)}%</Label>
+            <Label color='green' >WOW: {this.props.numberOfWow} / {this.props.forms.length} - {Math.round(this.props.numberOfWow * 100 / this.props.forms.length)}%</Label>
+            <Label color='olive' >Success: {this.props.numberOfOk} / {this.props.forms.length} - {Math.round(this.props.numberOfOk * 100 / this.props.forms.length)}%</Label>
+            <Label color='red' >Red Bucket: {this.props.numberOfKo} / {this.props.forms.length} - {Math.round(this.props.numberOfKo * 100 / this.props.forms.length)}%</Label>
           </Container>
         </Container>
         <Container style={{ display: 'flex', justifyContent: 'center' }} textAlign='left'>
@@ -53,11 +53,10 @@ class ListForms extends PureComponent {
 
 ListForms.propTypes = {
   forms: PropTypes.array.isRequired,
-  questions: PropTypes.array.isRequired,
   selectedCompany: PropTypes.object.isRequired,
-  numberOfWahou: PropTypes.number.isRequired,
-  numberOfOK: PropTypes.number.isRequired,
-  numberOfKO: PropTypes.number.isRequired,
+  numberOfWow: PropTypes.number.isRequired,
+  numberOfOk: PropTypes.number.isRequired,
+  numberOfKo: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired
 }
 
@@ -66,17 +65,17 @@ const mapStateToProps = ({
   forms,
   questions,
   selectedCompany,
-  numberOfWahou,
-  numberOfOK,
-  numberOfKO
+  numberOfWow,
+  numberOfOk,
+  numberOfKo
 }) => ({
   loading,
   forms,
   questions,
   selectedCompany,
-  numberOfWahou,
-  numberOfOK,
-  numberOfKO
+  numberOfWow,
+  numberOfOk,
+  numberOfKo
 })
 
 const mapDispatchToProps = {}

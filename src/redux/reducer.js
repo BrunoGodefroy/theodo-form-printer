@@ -6,14 +6,12 @@ const initialState = {
   loading: false,
   error: false,
   forms: [],
-  questions: [],
   isCompanyChosen: false,
-  selectedCompany: { name: '', scriptId: '' },
-  isClientLoaded: false,
+  selectedCompany: { name: '', path: '', config: null },
   errorMessage: '',
-  numberOfWahou: 0,
-  numberOfOK: 0,
-  numberOfKO: 0
+  numberOfWow: 0,
+  numberOfOk: 0,
+  numberOfKo: 0
 }
 
 export default function reducer (state = initialState, action = {}) {

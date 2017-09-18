@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Form, Segment, Header, Button, Icon } from 'semantic-ui-react'
 
+import { questionTypes } from '@config'
+
 class ProjectForm extends PureComponent {
   constructor (props) {
     super(props)
@@ -18,34 +20,20 @@ class ProjectForm extends PureComponent {
       <Button className='no-print' onClick={this.printForm} icon>
         <Icon name='print' />
       </Button>
-      { this.props.questions.map(question => {
-        if (!question.questionSlug) return
-
+      { this.props.form.questions.map(question => {
         switch (question.type) {
-          case 'MULTIPLE_CHOICE':
-            return (
-              <Segment key={`segment-${question.id}`} vertical>
-                <Header as='h3'>{ question.label }</Header>
-                { question.answers.map((answer, index) => {
-                  return (<Form.Radio key={`${question.questionSlug}-${index}`} label={answer} checked={this.props.form[question.questionSlug] === answer} />)
-                }) }
-              </Segment>)
-          case 'CHECKBOX':
-            return (
-              <Segment key={`segment-${question.id}`} vertical>
-                <Header as='h3'>{ question.label }</Header>
-                { this.props.form[question.questionSlug][0].split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
-              </Segment>
-            )
+          case questionTypes.MULTIPLE_CHOICE:
+            return <Segment key={`segment-${question.slug}`} vertical>
+              <Header as='h3'>{ question.label }</Header>
+              { question.choices.map(choice => {
+                return (<Form.Radio key={`${question.slug}-${choice.slug}`} label={choice.label} checked={question.answer === choice.label} />)
+              }) }
+            </Segment>
           default:
-            if (this.props.form[question.questionSlug] && !(['sprint', 'project'].includes(question.questionSlug))) {
-              return (
-                <Segment key={`segment-${question.id}`} vertical>
-                  <Header as='h3'>{ question.label }</Header>
-                  { this.props.form[question.questionSlug].split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
-                </Segment>
-              )
-            }
+            return <Segment key={`segment-${question.slug}`} vertical>
+              <Header as='h3'>{ question.label }</Header>
+              { question.answer.split(/\n/).map((string, index) => <p key={`${question.questionSlug}-${index}`}>{ string }</p>) }
+            </Segment>
         }
       })
       }
@@ -54,8 +42,7 @@ class ProjectForm extends PureComponent {
 }
 
 ProjectForm.propTypes = {
-  form: PropTypes.object.isRequired,
-  questions: PropTypes.array.isRequired
+  form: PropTypes.object.isRequired
 }
 
 export default ProjectForm
