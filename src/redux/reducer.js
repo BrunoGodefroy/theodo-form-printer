@@ -1,4 +1,5 @@
-import { types } from '@redux//actions'
+import { types } from '@redux/actions'
+import formTransformer from '@services/formTransformer'
 
 const initialState = {
   loggedIn: false,
@@ -43,30 +44,20 @@ export default function reducer (state = initialState, action = {}) {
     case types.LOGOUT.SUCCESS:
       return initialState
     case types.FETCH_FORMS.SUCCESS:
-      const forms = action.payload.responses
-      let numberOfWahou = 0
-      let numberOfOK = 0
-      let numberOfKO = 0
-      forms.forEach(form => {
-        if (form['satisfaction'] === 'Waouh') {
-          numberOfWahou += 1
-        }
-        if (form['satisfaction'] === 'OK') {
-          numberOfOK += 1
-        }
-        if (form['satisfaction'] === 'KO') {
-          numberOfKO += 1
-        }
-      })
+      const {
+        forms,
+        numberOfWow,
+        numberOfOk,
+        numberOfKo
+      } = formTransformer(action.payload, action.company)
       return {
         ...state,
         loading: false,
-        forms,
-        questions: action.payload.questions,
         error: false,
-        numberOfKO,
-        numberOfOK,
-        numberOfWahou
+        forms,
+        numberOfWow,
+        numberOfOk,
+        numberOfKo
       }
     case types.COMPANY_SELECTED:
       return {
