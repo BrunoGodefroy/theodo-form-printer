@@ -18,7 +18,6 @@ const initialState = {
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
     case types.LOGIN.REQUEST:
-    case types.GOOGLE_CLIENT_INIT.REQUEST:
     case types.LOGOUT.REQUEST:
     case types.FETCH_FORMS.REQUEST:
       return {
@@ -26,7 +25,6 @@ export default function reducer (state = initialState, action = {}) {
         loading: true
       }
     case types.LOGIN.FAILURE:
-    case types.GOOGLE_CLIENT_INIT.FAILURE:
     case types.LOGOUT.FAILURE:
     case types.FETCH_FORMS.FAILURE:
       return {
@@ -40,14 +38,6 @@ export default function reducer (state = initialState, action = {}) {
         ...state,
         loading: false,
         loggedIn: true,
-        error: false
-      }
-    case types.GOOGLE_CLIENT_INIT.SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loggedIn: action.isLoggedIn,
-        isClientLoaded: true,
         error: false
       }
     case types.LOGOUT.SUCCESS:

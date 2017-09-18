@@ -1,9 +1,4 @@
 export const types = {
-  GOOGLE_CLIENT_INIT: {
-    REQUEST: 'GOOGLE_CLIENT_INIT_REQUEST',
-    SUCCESS: 'GOOGLE_CLIENT_INIT_SUCCESS',
-    FAILURE: 'GOOGLE_CLIENT_INIT_FAILURE'
-  },
   LOGIN: {
     REQUEST: 'LOGIN_REQUEST',
     SUCCESS: 'LOGIN_SUCCESS',
@@ -30,20 +25,6 @@ export const companies = {
   BAM: { name: 'BAM', formId: '1oVWjK2woLw53yRa-2pkU2pJn9FRS3yiOOcRzgpWoFnQ' },
   SICARA: { name: 'Sicara', formId: '1E1_AGNUzEMYvoFkA05D9fP5ko6t4vmEXX2DN6r8_yrw' }
 }
-
-export const googleClientInitRequest = () => ({
-  type: types.GOOGLE_CLIENT_INIT.REQUEST
-})
-
-export const googleClientInitSuccess = isLoggedIn => ({
-  type: types.GOOGLE_CLIENT_INIT.SUCCESS,
-  isLoggedIn
-})
-
-export const googleClientInitFailure = error => ({
-  type: types.GOOGLE_CLIENT_INIT.FAILURE,
-  error
-})
 
 export const loginRequest = () => ({
   type: types.LOGIN.REQUEST
