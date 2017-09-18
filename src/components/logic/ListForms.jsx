@@ -4,19 +4,20 @@ import PropTypes from 'prop-types'
 import { Accordion, Label, Container } from 'semantic-ui-react'
 
 import { ProjectForm } from '@components/ui'
+import formStatus from '@config/formStatus'
 
 class ListForms extends PureComponent {
   render () {
     const panels = this.props.forms.map((form, index) => {
       let label
-      switch (form.satisfaction) {
-        case 'Waouh':
+      switch (form.status) {
+        case formStatus.WOW:
           label = <Label color='green' className='pinned'>WOW!</Label>
           break
-        case 'OK':
+        case formStatus.OK:
           label = <Label color='olive' className='pinned'>Success</Label>
           break
-        case 'KO':
+        case formStatus.KO:
           label = <Label color='red' className='pinned'>Red bucket</Label>
           break
         default:
