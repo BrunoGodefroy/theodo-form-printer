@@ -41,7 +41,7 @@ export default function reducer (state = initialState, action = {}) {
         loading: false,
         loggedIn: true,
         error: false
-    }
+      }
     case types.GOOGLE_CLIENT_INIT.SUCCESS:
       return {
         ...state,
