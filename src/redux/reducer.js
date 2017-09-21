@@ -1,39 +1,36 @@
-import { types } from '@redux//actions'
+import { types } from '@redux/actions'
+import formTransformer from '@services/formTransformer'
 
 const initialState = {
   loggedIn: false,
   loading: false,
   error: false,
   forms: [],
-  questions: [],
   isCompanyChosen: false,
-  selectedCompany: { name: '', scriptId: '' },
-  isClientLoaded: false,
+  selectedCompany: { name: '', path: '', config: null },
   errorMessage: '',
-  numberOfWahou: 0,
-  numberOfOK: 0,
-  numberOfKO: 0
+  numberOfWow: 0,
+  numberOfOk: 0,
+  numberOfKo: 0
 }
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
-    case types.GOOGLE_CLIENT_INIT.REQUEST:
+    case types.LOGIN.REQUEST:
+    case types.LOGOUT.REQUEST:
+    case types.FETCH_FORMS.REQUEST:
       return {
         ...state,
         loading: true
       }
-    case types.GOOGLE_CLIENT_INIT.SUCCESS:
+    case types.LOGIN.FAILURE:
+    case types.LOGOUT.FAILURE:
+    case types.FETCH_FORMS.FAILURE:
       return {
         ...state,
         loading: false,
-        loggedIn: action.isLoggedIn,
-        isClientLoaded: true,
-        error: false
-      }
-    case types.LOGIN.REQUEST:
-      return {
-        ...state,
-        loading: true
+        error: true,
+        errorMessage: action.error
       }
     case types.LOGIN.SUCCESS:
       return {
@@ -42,53 +39,23 @@ export default function reducer (state = initialState, action = {}) {
         loggedIn: true,
         error: false
       }
-    case types.LOGOUT.REQUEST:
-      return {
-        ...state,
-        loading: true
-      }
     case types.LOGOUT.SUCCESS:
       return initialState
-    case types.FETCH_FORMS.REQUEST:
-      return {
-        ...state,
-        loading: true
-      }
     case types.FETCH_FORMS.SUCCESS:
-      const forms = action.payload.responses
-      let numberOfWahou = 0
-      let numberOfOK = 0
-      let numberOfKO = 0
-      forms.forEach(form => {
-        if (form['satisfaction'] === 'Waouh') {
-          numberOfWahou += 1
-        }
-        if (form['satisfaction'] === 'OK') {
-          numberOfOK += 1
-        }
-        if (form['satisfaction'] === 'KO') {
-          numberOfKO += 1
-        }
-      })
-      return {
-        ...state,
-        loading: false,
+      const {
         forms,
-        questions: action.payload.questions,
-        error: false,
-        numberOfKO,
-        numberOfOK,
-        numberOfWahou
-      }
-    case types.LOGIN.FAILURE:
-    case types.GOOGLE_CLIENT_INIT.FAILURE:
-    case types.LOGOUT.FAILURE:
-    case types.FETCH_FORMS.FAILURE:
+        numberOfWow,
+        numberOfOk,
+        numberOfKo
+      } = formTransformer(action.payload, action.company)
       return {
         ...state,
         loading: false,
-        error: true,
-        errorMessage: action.error
+        error: false,
+        forms,
+        numberOfWow,
+        numberOfOk,
+        numberOfKo
       }
     case types.COMPANY_SELECTED:
       return {

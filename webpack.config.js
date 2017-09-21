@@ -55,7 +55,8 @@ module.exports = function (env) {
         '@images': path.resolve(ROOT_PATH, 'src/images'),
         '@redux': path.resolve(ROOT_PATH, 'src/redux'),
         '@services': path.resolve(ROOT_PATH, 'src/services'),
-        '@style': path.resolve(ROOT_PATH, 'src/style')
+        '@style': path.resolve(ROOT_PATH, 'src/style'),
+        '@config': path.resolve(ROOT_PATH, 'src/config')
       }
     },
     devServer: {
