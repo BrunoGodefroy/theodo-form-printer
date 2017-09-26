@@ -66,16 +66,6 @@ export default {
       ]
     },
     {
-      slug: questionSlugs.CLIENT_VOICE,
-      label: 'Quelle amélioration prioritaire pourrait vous amener à améliorer votre appréciation ?',
-      type: types.TEXT
-    },
-    {
-      slug: questionSlugs.MAGIC_WAND,
-      label: 'Si vous aviez une baguette magique, quelle est "la" chose que vous changeriez chez Sicara ?',
-      type: types.TEXT
-    },
-    {
       slug: questionSlugs.RECOMMENDATION,
       label: 'Seriez-vous prêt à recommander Sicara ?',
       type: types.MULTIPLE_CHOICE,
@@ -97,6 +87,16 @@ export default {
           label: 'Pas du tout'
         }
       ]
+    },
+    {
+      slug: questionSlugs.CLIENT_VOICE,
+      label: 'Quelle amélioration prioritaire pourrait vous amener à améliorer votre appréciation ?',
+      type: types.TEXT
+    },
+    {
+      slug: questionSlugs.MAGIC_WAND,
+      label: 'Si vous aviez une baguette magique, quelle est "la" chose que vous changeriez chez Sicara ?',
+      type: types.TEXT
     },
     {
       slug: questionSlugs.SALE_APPOINTMENT,
