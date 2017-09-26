@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --env.production",
-    "test": "standard",
-    "fix-linter": "standard --fix"
+    "test": "standard ./src",
+    "fix-linter": "standard ./src --fix"
   },
   "dependencies": {
     "firebase": "^4.3.1",
