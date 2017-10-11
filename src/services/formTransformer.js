@@ -13,8 +13,8 @@ export default (data, company) => {
   const recommendationLabel = questions.find(question => question.slug === questionSlugs.RECOMMENDATION).label
 
   const parseFormTheodoUk = form => {
-    const collaboration = parseInt(form[collaborationLabel][0])
-    const speed = parseInt(form[speedLabel][0])
+    const collaboration = typeof form[collaborationLabel] !== 'undefined' ? parseInt(form[collaborationLabel][0]) : 0
+    const speed = typeof form[speedLabel] !== 'undefined' ? parseInt(form[speedLabel][0]) : 0
     const recomendation = form[recommendationLabel] === YES_ABS
     let status
 
