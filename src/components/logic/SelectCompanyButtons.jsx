@@ -13,7 +13,9 @@ class SelectCompanyButtons extends PureComponent {
   }
 
   selectCompany (company) {
-    return () => this.props.chooseCompany(company)
+    return () => {
+      if (this.props.selectedCompany !== company) this.props.chooseCompany(company)
+    }
   }
 
   render () {
