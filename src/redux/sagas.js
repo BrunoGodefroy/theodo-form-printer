@@ -45,15 +45,17 @@ function * syncUserSaga () {
   }
 }
 
-function * fetchLatestForms (action) {
+function * syncLatestForms (action) {
   const company = yield select(state => state.selectedCompany)
+  const channel = yield call(reduxSagaFirebase.database.channel, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
 
-  try {
-    const data = yield call(reduxSagaFirebase.database.read, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
-
-    yield put(fetchFormsSuccess(data, company))
-  } catch (e) {
-    yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
+  while (true) {
+    try {
+      const { value: data } = yield take(channel)
+      yield put(fetchFormsSuccess(data, company))
+    } catch (e) {
+      yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
+    }
   }
 }
 
@@ -66,7 +68,7 @@ function * rootSaga () {
   yield fork(syncUserSaga)
   yield takeEvery(types.LOGIN.REQUEST, loginSaga)
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga)
-  yield takeEvery(types.FETCH_FORMS.REQUEST, fetchLatestForms)
+  yield takeEvery(types.FETCH_FORMS.REQUEST, syncLatestForms)
   yield takeEvery(types.COMPANY_SELECTED, triggerFetchFormSaga)
 }
 
