@@ -13,16 +13,18 @@ class SelectCompanyButtons extends PureComponent {
   }
 
   selectCompany (company) {
-    return () => this.props.chooseCompany(company)
+    return () => {
+      if (this.props.selectedCompany !== company) this.props.chooseCompany(company)
+    }
   }
 
   render () {
     return <Container>
-      <Button active={this.props.selectCompany === companies.THEODO_UK} onClick={this.selectCompany(companies.THEODO_UK)} >Theodo UK</Button>
-      <Button active={this.props.selectCompany === companies.THEODO_FR} onClick={this.selectCompany(companies.THEODO_FR)} >Theodo FR</Button>
-      <Button active={this.props.selectCompany === companies.FASTIT} onClick={this.selectCompany(companies.FASTIT)} >FastIT</Button>
-      <Button active={this.props.selectCompany === companies.BAM} onClick={this.selectCompany(companies.BAM)} >BAM</Button>
-      <Button active={this.props.selectCompany === companies.SICARA} onClick={this.selectCompany(companies.SICARA)} >Sicara</Button>
+      <Button active={this.props.selectedCompany === companies.THEODO_UK} onClick={this.selectCompany(companies.THEODO_UK)} >Theodo UK</Button>
+      <Button active={this.props.selectedCompany === companies.THEODO_FR} onClick={this.selectCompany(companies.THEODO_FR)} >Theodo FR</Button>
+      <Button active={this.props.selectedCompany === companies.FASTIT} onClick={this.selectCompany(companies.FASTIT)} >FastIT</Button>
+      <Button active={this.props.selectedCompany === companies.BAM} onClick={this.selectCompany(companies.BAM)} >BAM</Button>
+      <Button active={this.props.selectedCompany === companies.SICARA} onClick={this.selectCompany(companies.SICARA)} >Sicara</Button>
     </Container>
   }
 }
