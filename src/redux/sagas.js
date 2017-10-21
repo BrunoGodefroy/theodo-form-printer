@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select, fork, take } from 'redux-saga/effects'
+import { call, put, takeEvery, select, fork, take, cancel, cancelled } from 'redux-saga/effects'
 import firebase from 'firebase'
 
 import {
@@ -45,16 +45,25 @@ function * syncUserSaga () {
   }
 }
 
-function * fetchLatestForms (action) {
-  const company = yield select(state => state.selectedCompany)
-
-  try {
-    const data = yield call(reduxSagaFirebase.database.read, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
-
-    yield put(fetchFormsSuccess(data, company))
-  } catch (e) {
-    yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
+function * syncLatestFormsSaga (channel, company) {
+  while (true) {
+    try {
+      const { value: data } = yield take(channel)
+      yield put(fetchFormsSuccess(data, company))
+    } catch (e) {
+      yield put(fetchFormsFailure('The latest project forms could not be retrieved. Please check you have the permission to view them'))
+    } finally {
+      if (yield cancelled()) channel.close()
+    }
   }
+}
+
+function * handleFormsSyncSaga (action) {
+  const company = yield select(state => state.selectedCompany)
+  const channel = yield call(reduxSagaFirebase.database.channel, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
+  const syncTask = yield fork(syncLatestFormsSaga, channel, company)
+  yield take(types.COMPANY_SELECTED)
+  yield cancel(syncTask)
 }
 
 function * triggerFetchFormSaga (action) {
@@ -66,7 +75,7 @@ function * rootSaga () {
   yield fork(syncUserSaga)
   yield takeEvery(types.LOGIN.REQUEST, loginSaga)
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga)
-  yield takeEvery(types.FETCH_FORMS.REQUEST, fetchLatestForms)
+  yield takeEvery(types.FETCH_FORMS.REQUEST, handleFormsSyncSaga)
   yield takeEvery(types.COMPANY_SELECTED, triggerFetchFormSaga)
 }
 

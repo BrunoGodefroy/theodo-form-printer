@@ -6,8 +6,7 @@ import { Header, Container, Loader, Dimmer, Divider } from 'semantic-ui-react'
 import {
   LoginButton,
   SelectCompanyButtons,
-  ListForms,
-  UpdateFormsButton
+  ListForms
 } from '@components/logic'
 import { Error } from '@components/ui'
 
@@ -22,7 +21,6 @@ class App extends PureComponent {
       <Header className='no-print' as='h1' textAlign='center'> { this.props.selectedCompany.name } Project Form - Print Me</Header>
       <Container className='no-print'>
         <LoginButton />
-        { this.props.loggedIn && <UpdateFormsButton /> }
       </Container>
       <Divider className='no-print' />
       <Container className='no-print'>
