@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/BrunoGodefroy/theodo-form-printer/tree/master.svg?style=svg)](https://circleci.com/gh/BrunoGodefroy/theodo-form-printer/tree/master)
+
 # Theodo forms printer
 
 This projects aims at make it easier for anyone at Theodo to print their project form. No more excuses to have a board out of date.
