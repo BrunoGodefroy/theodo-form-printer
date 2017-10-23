@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Button, Container } from 'semantic-ui-react'
+import ReactGA from 'react-ga'
 
 import { chooseCompany } from '@redux/actions'
 import { companies } from '@config'
@@ -14,7 +15,14 @@ class SelectCompanyButtons extends PureComponent {
 
   selectCompany (company) {
     return () => {
-      if (this.props.selectedCompany !== company) this.props.chooseCompany(company)
+      if (this.props.selectedCompany !== company) {
+        this.props.chooseCompany(company)
+        ReactGA.event({
+          category: 'Forms',
+          action: 'Select Company',
+          label: company.name,
+        })
+      }
     }
   }
 
