@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Form, Segment, Header, Button, Icon } from 'semantic-ui-react'
+import ReactGA from 'react-ga'
 
 import { questionTypes } from '@config'
 
@@ -10,8 +11,13 @@ class ProjectForm extends PureComponent {
     this.printForm = this.printForm.bind(this)
   }
 
-  printForm (event, data) {
+  printForm (event) {
     event.preventDefault()
+    ReactGA.event({
+      category: 'Forms',
+      action: 'Print',
+      label: this.props.form.project,
+    })
     window.print()
   }
 
