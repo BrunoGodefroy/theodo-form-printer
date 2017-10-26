@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select, fork, take, cancel, cancelled } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select, fork, take, cancel, cancelled } from 'redux-saga/effects'
 import firebase from 'firebase'
 
 import {
@@ -62,8 +62,6 @@ function * handleFormsSyncSaga (action) {
   const company = yield select(state => state.selectedCompany)
   const channel = yield call(reduxSagaFirebase.database.channel, firebase.database().ref(`forms/${company.path}`).orderByChild('timestamp').limitToLast(30))
   const syncTask = yield fork(syncLatestFormsSaga, channel, company)
-  yield take(types.COMPANY_SELECTED)
-  yield cancel(syncTask)
 }
 
 function * triggerFetchFormSaga (action) {
@@ -75,7 +73,7 @@ function * rootSaga () {
   yield fork(syncUserSaga)
   yield takeEvery(types.LOGIN.REQUEST, loginSaga)
   yield takeEvery(types.LOGOUT.REQUEST, logoutSaga)
-  yield takeEvery(types.FETCH_FORMS.REQUEST, handleFormsSyncSaga)
+  yield takeLatest(types.FETCH_FORMS.REQUEST, handleFormsSyncSaga)
   yield takeEvery(types.COMPANY_SELECTED, triggerFetchFormSaga)
 }
 
